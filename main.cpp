@@ -15,9 +15,9 @@ int main()
         window.close();
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-      hero.move(0, 5);
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+      hero.move(0, 5);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
       hero.move(0, -5);
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
       hero.move(-5, 0);
