@@ -4,8 +4,17 @@ int main()
 {
   sf::RenderWindow window(sf::VideoMode(800, 600), "ONE versus ALL");
   window.setFramerateLimit(60);
-  sf::CircleShape hero(40);
+  sf::Texture heroTexture;
+  heroTexture.loadFromFile("/home/igor/CLionProjects/ONE_versus_ALL/img/hero.png");
+  heroTexture.setSmooth(true);
+  sf::Sprite hero;
+  hero.setTexture(heroTexture);
   hero.move(400, 300);
+  sf::Texture background;
+  background.loadFromFile("/home/igor/CLionProjects/ONE_versus_ALL/img/background.jpg");
+  background.setRepeated(true);
+  sf::Sprite back(background, sf::IntRect(0, 0, 800, 600));
+  //back.setTextureRect(sf::IntRect(0, 0, 800, 600));
   while (window.isOpen())
   {
     sf::Event event;
@@ -24,6 +33,7 @@ int main()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
       hero.move(5, 0);
     window.clear();
+    window.draw(back);
     window.draw(hero);
     window.display();
   }
