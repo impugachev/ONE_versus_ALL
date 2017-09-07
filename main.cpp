@@ -15,13 +15,13 @@ int main()
         window.close();
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-      hero.move(0, 5);
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
       hero.move(0, -5);
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+      hero.move(0, 5);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
       hero.move(-5, 0);
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
       hero.move(5, 0);
     window.clear();
     window.draw(hero);
