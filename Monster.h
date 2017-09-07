@@ -6,10 +6,8 @@
 class Monster : public Living
 {
 public:
-  Monster(qty HP, qty speed, qty damage) : HP(HP), speed(speed), damage(damage)
-  {
-    //создание спрайта и его размещение
-  };
+  Monster(qty HP, qty speed, qty damage);
+  void runToHero();
 };
 
 #endif
