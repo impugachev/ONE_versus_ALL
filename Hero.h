@@ -16,10 +16,11 @@ private:
   sf::Texture heroTexture;
   sf::Sprite hero;
   Weapon gunHero;
+  Position heroPosition;
 public:
-  Hero(qty HP, qty speed, qty damage, qty capacityWeapon);
-  void attack(Living* enemy);
-  position heroControl();
+  Hero(qty HP, qty speed, qty damage, qty capacityWeapon, Position* heroPosition = new Position(472,319));
+  bool attack(Living *enemy);
+  Position heroControl();
   void getDamage(qty dmg);
   void reloadWeapon(Weapon gunHero);
   ~Hero();

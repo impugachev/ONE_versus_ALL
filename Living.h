@@ -8,7 +8,7 @@ class Living
 protected:
   qty HP, speed, damage;
 public:
-  virtual void attack(Living*) = 0;
+  virtual bool attack(Living *) = 0;
   virtual void getDamage(qty dmg) = 0;
   virtual ~Living() = default;
 };

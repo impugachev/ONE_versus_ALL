@@ -7,8 +7,9 @@
 
 typedef unsigned int qty;
 
-struct position
+struct Position
 {
   int x, y;
+  Position(int x, int y) : x(x), y(y) {};
 };
 #endif //ONE_VERSUS_ALL_SUPPORT_H

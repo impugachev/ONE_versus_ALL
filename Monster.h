@@ -13,8 +13,8 @@ class Monster : public Living
 public:
   Monster();
   Monster(qty HP, qty speed, qty damage);
-  virtual position runToHero();
-  virtual void attack(Living* hero);
+  virtual Position runToHero();
+  virtual bool attack(Living *hero);
   virtual void getDamage(qty dmg);
   ~Monster();
 };

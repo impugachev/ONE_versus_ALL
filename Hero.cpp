@@ -5,16 +5,20 @@
 #include <SFML/Graphics.hpp>
 #include "Hero.h"
 
-Hero::Hero(qty HP, qty speed, qty damage, qty capacityWeapon)
-: HP(HP), speed(speed), damage(damage), gunHero(capacityWeapon)
+Hero::Hero(qty HP, qty speed, qty damage, qty capacityWeapon, Position* heroPosition = new Position(472,319))
+: HP(HP), speed(speed), damage(damage), gunHero(capacityWeapon),heroPosition(*heroPosition)
 {
   heroTexture.loadFromFile(imageHero);
   heroTexture.setSmooth(true);
   hero.setTexture(heroTexture);
-  hero.move(472, 319);
+  hero.move(heroPosition->x, heroPosition->y);
 }
 
-void Hero::attack(Living *enemy)
+bool Hero::attack(Living *enemy)
 {
+  if (gunHero.ammo == 0)
+    return false;
+  gunHero.ammo--;
+  //gunHero.shoot()
   enemy->getDamage(damage);
 }

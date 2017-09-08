@@ -14,7 +14,7 @@ public:
   Soldier(qty HP, qty speed, qty damage);
   void attack(Living* hero);
   void getDamage(qty dmg);
-  position runToHero();
+  Position runToHero();
   void reloadWeapon();
   ~Soldier();
 };

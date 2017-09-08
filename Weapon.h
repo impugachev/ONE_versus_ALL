@@ -12,13 +12,13 @@
 
 class Weapon
 {
-  friend Hero;
-  friend Soldier;
+  friend class Hero;
+  friend class Soldier;
 private:
   qty ammo, capacity;
 public:
   Weapon(qty capacity);
-  bool shoot(position from, position to);
+  bool shoot(Position from, Position to);
 };
 
 
