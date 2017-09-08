@@ -1,16 +1,17 @@
 #ifndef ONE_VERSUS_ALL_LIVING_H
 #define ONE_VERSUS_ALL_LIVING_H
 
-typedef unsigned int qty;
+#include "support.h"
 
 class Living
 {
 protected:
   qty HP, speed, damage;
 public:
-  virtual unsigned int attack() = 0;
-  virtual void getDamage(unsigned int) = 0;
+  virtual void attack(Living*) = 0;
+  virtual void getDamage(qty dmg) = 0;
   virtual ~Living() = default;
 };
+
 
 #endif
