@@ -16,9 +16,22 @@ Hero::Hero(qty HP, qty speed, qty damage, qty capacityWeapon, Position* heroPosi
 
 bool Hero::attack(Living *enemy)
 {
-  if (gunHero.ammo == 0)
+  if (this->gunHero.isEmpty())
     return false;
-  gunHero.ammo--;
+  gunHero--;
   //gunHero.shoot()
   enemy->getDamage(damage);
+}
+
+Position Hero::heroControl()
+{
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+    hero.move(0, -speed);
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+    hero.move(0, speed);
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+    hero.move(-speed, 0);
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+    hero.move(speed, 0);
+  return Position(0, 0);
 }

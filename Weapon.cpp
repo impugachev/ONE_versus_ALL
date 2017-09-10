@@ -3,3 +3,23 @@
 //
 
 #include "Weapon.h"
+
+Weapon::Weapon(qty capacity) :
+capacity(capacity), ammo(capacity) {};
+
+bool Weapon::isEmpty()
+{
+  if (this->ammo == 0)
+    return true;
+  else
+    return false;
+}
+
+Weapon& Weapon::operator--(Weapon& gun)
+{
+  gun.ammo--;
+  return gun;
+}
+
+
+
