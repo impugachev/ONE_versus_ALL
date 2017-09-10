@@ -12,6 +12,8 @@
 
 class Weapon
 {
+  friend class Hero;
+  friend class Soldier;
 private:
   qty ammo, capacity;
 public:
