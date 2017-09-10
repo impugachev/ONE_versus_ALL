@@ -12,8 +12,8 @@ class Monster : public Living
 {
 public:
   Monster();
-  Monster(qty HP, qty speed, qty damage);
-  virtual Position runToHero();
+  Monster(qty HP, qty speed, qty damage, const std::string& textureFile, sf::Vector2i* position);
+  virtual void runToHero();
   virtual bool attack(Living *hero);
   virtual void getDamage(qty dmg);
   ~Monster();

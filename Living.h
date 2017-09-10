@@ -8,7 +8,10 @@ class Living
 {
 protected:
   qty HP, speed, damage;
+  sf::Texture texture;
   sf::Vector2i position;
+  const std::string textureFile;
+  sf::Sprite objSprite;
 public:
   virtual bool attack(Living *) = 0;
   virtual void getDamage(qty dmg) = 0;
