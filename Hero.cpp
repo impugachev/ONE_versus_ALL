@@ -18,27 +18,27 @@ bool Hero::attack(Living *enemy)
     return false;
   gunHero--;
   //gunHero.shoot()
-  enemy->getDamage(damage);
+  //enemy->getDamage(damage);
 }
 
 void Hero::heroControl(sf::RenderWindow window)
 {
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && position.y > 0 )
   {
     objSprite.move(0, -speed);
     position.y -= speed;
   }
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && position.y < 768 )
   {
     objSprite.move(0, speed);
     position.y += speed;
   }
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && position.x > 0 )
   {
     objSprite.move(-speed, 0);
     position.x -= speed;
   }
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && position.y < 1024 )
   {
     objSprite.move(speed, 0);
     position.x += speed;
@@ -51,16 +51,20 @@ void Hero::heroControl(sf::RenderWindow window)
 
 void Hero::getDamage(qty dmg)
 {
-  if (dmg > HP)
+  if (dmg >= HP)
   {
-    //gameOver()
+    //gameOver
   }
   HP -= dmg;
 }
 
 void Hero::reloadWeapon(Weapon& gunHero)
 {
-  //timer
+  sf::Clock timer;
+  while (timer.getElapsedTime() < sf::seconds(3))
+  {
+    //ждать 3 секунды
+  };
   gunHero.ammo = gunHero.capacity;
 }
 

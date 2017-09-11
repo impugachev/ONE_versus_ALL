@@ -13,6 +13,7 @@ protected:
   const std::string textureFile;
   sf::Sprite objSprite;
 public:
+  friend sf::Vector2i getPosition(Living* living);
   virtual bool attack(Living *) = 0;
   virtual void getDamage(qty dmg) = 0;
   virtual ~Living() = default;

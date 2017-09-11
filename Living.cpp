@@ -3,3 +3,8 @@
 //
 
 #include "Living.h"
+
+sf::Vector2i getPosition(Living *living)
+{
+  return living->position;
+}
