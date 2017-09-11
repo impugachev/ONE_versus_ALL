@@ -12,10 +12,10 @@ Hero::Hero(qty HP, qty speed, qty damage, qty capacityWeapon,
   objSprite.move(position->x, position->y);
 }
 
-bool Hero::attack(Living *enemy)
+void Hero::attack(Living *enemy)
 {
   if (this->gunHero.isEmpty())
-    return false;
+    return;
   gunHero--;
   //gunHero.shoot()
   //enemy->getDamage(damage);
@@ -58,14 +58,12 @@ void Hero::getDamage(qty dmg)
   HP -= dmg;
 }
 
-void Hero::reloadWeapon(Weapon& gunHero)
+void Hero::reloadWeapon(Weapon& gunHero, sf::Clock& timer)
 {
-  sf::Clock timer;
-  while (timer.getElapsedTime() < sf::seconds(3))
-  {
-    //ждать 3 секунды
-  };
-  gunHero.ammo = gunHero.capacity;
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+    timer.restart();
+  if(round(timer.getElapsedTime().asSeconds()) == 3)
+    gunHero.ammo = gunHero.capacity;
 }
 
 

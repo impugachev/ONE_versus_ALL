@@ -16,7 +16,7 @@ public:
   Monster(qty HP, qty speed, qty damage, const std::string& textureFile);
   void rotateToHero(Hero*);
   virtual void runToHero(Hero*);
-  virtual bool attack(Living *hero);
+  virtual void attack(Living *hero);
   virtual void getDamage(qty dmg);
   //~Monster();
 };

@@ -77,9 +77,9 @@ void Monster::runToHero(Hero *hero)
   }
 }
 
-bool Monster::attack(Living *hero)
+void Monster::attack(Living *hero)
 {
-  return false;
+if(position - sf::Vector2i(20,20))
 }
 
 void Monster::getDamage(qty dmg)

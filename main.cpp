@@ -44,12 +44,13 @@ int main()
     sf::Vector2i vect = mousePos-heropos;
     float rot = acos(vect.y/sqrt(vect.x*vect.x+vect.y*vect.y))*180/3.14159265 - 180;
     rot = vect.x < 0 ? rot : -rot;
+    std::cerr << hero.getPosition().x << " " << hero.getPosition().y << "\n";
     //std::cerr << rot << "\n";
     hero.setRotation(rot);
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
 
-      std::cerr << mousePos.x << " " << mousePos.y << "\n";
+      std::cerr << "mouse " << mousePos.x << " " << mousePos.y << "\n";
       //hero.rotate(-90);
       //hero.move(57, 35);
     }

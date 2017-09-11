@@ -14,7 +14,7 @@ protected:
   sf::Sprite objSprite;
 public:
   friend sf::Vector2i getPosition(Living* living);
-  virtual bool attack(Living *) = 0;
+  virtual void attack(Living *) = 0;
   virtual void getDamage(qty dmg) = 0;
   virtual ~Living() = default;
 };
