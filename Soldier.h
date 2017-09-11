@@ -17,7 +17,7 @@ public:
   void attack(Living* hero);
   void getDamage(qty dmg);
   void reloadWeapon(Weapon& gunSoldier, sf::Clock& timer);
-  void runToHero(Hero*);
+  //void runToHero(Hero*);
   //~Soldier();
 };
 
