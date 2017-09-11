@@ -4,7 +4,7 @@
 
 #include "Living.h"
 
-sf::Vector2i getPosition(Living *living)
+const sf::Vector2f & getPosition(Living *living)
 {
-  return living->position;
+  return living->objSprite.getPosition();
 }

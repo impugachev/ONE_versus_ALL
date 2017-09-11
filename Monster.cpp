@@ -17,6 +17,7 @@ Monster::Monster(qty HP, qty speed, qty damage, const std::string& textureFile)
   texture.setSmooth(true);
   objSprite.setTexture(texture);
   srand(time(0));
+  sf::Vector2f position;
   int randomizePosition = rand() % 4;
   switch (randomizePosition)
   {
@@ -37,49 +38,36 @@ Monster::Monster(qty HP, qty speed, qty damage, const std::string& textureFile)
       position.y = -20;
       break;
   }
-  objSprite.move(position.x, position.y);
+  objSprite.move(position);
 }
 
 void Monster::rotateToHero(Hero *hero)
 {
   auto heroPos = getPosition(hero);
-  auto vect = heroPos - position;
+  auto vect = heroPos - this->objSprite.getPosition();
   float rot = acos(vect.y/sqrt(vect.x*vect.x+vect.y*vect.y))*180/3.14159265 - 180;
-  objSprite.setRotation(vect.x < 0 ? rot : -rot);
+  this->objSprite.setRotation(vect.x < 0 ? rot : -rot);
 }
 
 void Monster::runToHero(Hero *hero)
 {
   auto heroPos = getPosition(hero);
-  if ((position.x < heroPos.x) && (position.y < heroPos.y))
-  {
+  if ((objSprite.getPosition().x < heroPos.x) && (objSprite.getPosition().y < heroPos.y))
     objSprite.move(speed, speed);
-    position.x += speed;
-    position.y += speed;
-  }
-  if ((position.x > heroPos.x) && (position.y < heroPos.y))
-  {
+  if ((objSprite.getPosition().x > heroPos.x) && (objSprite.getPosition().y < heroPos.y))
     objSprite.move(-speed, speed);
-    position.x -= speed;
-    position.y += speed;
-  }
-  if ((position.x < heroPos.x) && (position.y > heroPos.y))
-  {
+  if ((objSprite.getPosition().x < heroPos.x) && (objSprite.getPosition().y > heroPos.y))
     objSprite.move(speed, -speed);
-    position.x += speed;
-    position.y -= speed;
-  }
-  if ((position.x > heroPos.x) && (position.y > heroPos.y))
-  {
+  if ((objSprite.getPosition().x > heroPos.x) && (objSprite.getPosition().y > heroPos.y))
     objSprite.move(-speed, -speed);
-    position.x -= speed;
-    position.y -= speed;
-  }
 }
 
 void Monster::attack(Living *hero)
 {
-if(position - sf::Vector2i(20,20))
+  auto heroPos = getPosition(hero);
+  auto monsterPos = objSprite.getPosition();
+  if((monsterPos.x-heroPos.x)*(monsterPos.x-heroPos.x)+(monsterPos.y-heroPos.y)*(monsterPos.y-heroPos.y) <= 100)
+    hero->getDamage(damage);
 }
 
 void Monster::getDamage(qty dmg)

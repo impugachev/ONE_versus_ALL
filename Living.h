@@ -9,11 +9,10 @@ class Living
 protected:
   qty HP, speed, damage;
   sf::Texture texture;
-  sf::Vector2i position;
   const std::string textureFile;
   sf::Sprite objSprite;
 public:
-  friend sf::Vector2i getPosition(Living* living);
+  friend const sf::Vector2f & getPosition(Living* living);
   virtual void attack(Living *) = 0;
   virtual void getDamage(qty dmg) = 0;
   virtual ~Living() = default;

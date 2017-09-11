@@ -10,13 +10,15 @@
 
 class Soldier : public Monster
 {
+private:
+  Weapon gunSoldier;
 public:
-  Soldier(qty HP, qty speed, qty damage);
+  Soldier(qty HP, qty speed, qty damage, const std::string& textureFile, qty capacityWeapon);
   void attack(Living* hero);
   void getDamage(qty dmg);
-  Position runToHero();
-  void reloadWeapon();
-  ~Soldier();
+  void reloadWeapon(Weapon& gunSoldier, sf::Clock& timer);
+  void runToHero(Hero*);
+  //~Soldier();
 };
 
 

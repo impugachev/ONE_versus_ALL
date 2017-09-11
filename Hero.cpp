@@ -23,28 +23,16 @@ void Hero::attack(Living *enemy)
 
 void Hero::heroControl(sf::RenderWindow window)
 {
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && position.y > 0 )
-  {
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && objSprite.getPosition().y > 0 )
     objSprite.move(0, -speed);
-    position.y -= speed;
-  }
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && position.y < 768 )
-  {
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && objSprite.getPosition().y < 768 )
     objSprite.move(0, speed);
-    position.y += speed;
-  }
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && position.x > 0 )
-  {
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && objSprite.getPosition().x > 0 )
     objSprite.move(-speed, 0);
-    position.x -= speed;
-  }
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && position.y < 1024 )
-  {
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && objSprite.getPosition().y < 1024 )
     objSprite.move(speed, 0);
-    position.x += speed;
-  }
   sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-  sf::Vector2i vect = mousePos - position;
+  sf::Vector2i vect = mousePos - objSprite.getPosition();
   float rot = acos(vect.y/sqrt(vect.x*vect.x+vect.y*vect.y))*180/3.14159265 - 180;
   objSprite.setRotation(vect.x < 0 ? rot : -rot);
 }
