@@ -5,10 +5,7 @@
 #ifndef ONE_VERSUS_ALL_WEAPON_H
 #define ONE_VERSUS_ALL_WEAPON_H
 
-
 #include "support.h"
-#include "Hero.h"
-#include "Soldier.h"
 
 class Weapon
 {
@@ -20,7 +17,7 @@ public:
   Weapon(qty capacity);
   bool shoot(Position from, Position to);
   bool isEmpty();
-  Weapon& operator-- (Weapon& gun);
+  Weapon& operator-- (int);
 };
 
 

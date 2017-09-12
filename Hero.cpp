@@ -23,7 +23,7 @@ void Hero::attack(Living *enemy)
   //enemy->getDamage(damage);
 }
 
-void Hero::heroControl(sf::RenderWindow window)
+void Hero::heroControl(sf::RenderWindow& window)
 {
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && objSprite.getPosition().y > 0 )
     objSprite.move(0, -speed);

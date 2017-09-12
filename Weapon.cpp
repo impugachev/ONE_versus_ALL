@@ -15,10 +15,10 @@ bool Weapon::isEmpty()
     return false;
 }
 
-Weapon& Weapon::operator--(Weapon& gun)
+Weapon& Weapon::operator--(int)
 {
-  gun.ammo--;
-  return gun;
+  this->ammo--;
+  return *this;
 }
 
 

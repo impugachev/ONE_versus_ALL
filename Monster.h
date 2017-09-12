@@ -5,8 +5,6 @@
 #ifndef ONE_VERSUS_ALL_MONSTER_H
 #define ONE_VERSUS_ALL_MONSTER_H
 
-
-#include "Living.h"
 #include "Hero.h"
 
 class Monster : public Living
