@@ -3,12 +3,14 @@
 #include "Hero.h"
 
 Hero::Hero(qty HP, qty speed, qty damage, qty capacityWeapon,
-           const std::string& textureFile, sf::Vector2i* position = new sf::Vector2i(472,319))
-: HP(HP), speed(speed), damage(damage), gunHero(capacityWeapon), textureFile(textureFile), position(*position)
+           const std::string& textureFile, float centerX, float centerY, sf::Vector2i* position = new sf::Vector2i(472,319))
+: HP(HP), speed(speed), damage(damage), gunHero(capacityWeapon),
+  textureFile(textureFile), centerX(centerX), centerY(centerY)
 {
   texture.loadFromFile(textureFile);
   texture.setSmooth(true);
   objSprite.setTexture(texture);
+  objSprite.setOrigin(centerX, centerY);
   objSprite.move(position->x, position->y);
 }
 

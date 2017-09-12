@@ -10,12 +10,13 @@ Monster::Monster()
 
 }
 
-Monster::Monster(qty HP, qty speed, qty damage, const std::string& textureFile)
-: HP(HP), speed(speed), damage(damage), textureFile(textureFile)
+Monster::Monster(qty HP, qty speed, qty damage, const std::string& textureFile, float centerX, float centerY)
+: HP(HP), speed(speed), damage(damage), textureFile(textureFile), centerX(centerX), centerY(centerY)
 {
   texture.loadFromFile(textureFile);
   texture.setSmooth(true);
   objSprite.setTexture(texture);
+  objSprite.setOrigin(centerX, centerY);
   srand(time(0));
   sf::Vector2f position;
   int randomizePosition = rand() % 4;

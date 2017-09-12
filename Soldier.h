@@ -13,7 +13,7 @@ class Soldier : public Monster
 private:
   Weapon gunSoldier;
 public:
-  Soldier(qty HP, qty speed, qty damage, const std::string& textureFile, qty capacityWeapon);
+  Soldier(qty HP, qty speed, qty damage, const std::string& textureFile, qty capacityWeapon,  float centerX, float centerY);
   void attack(Living* hero);
   void getDamage(qty dmg);
   void reloadWeapon(Weapon& gunSoldier, sf::Clock& timer);

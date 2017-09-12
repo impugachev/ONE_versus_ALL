@@ -13,7 +13,7 @@ class Monster : public Living
 {
 public:
   Monster();
-  Monster(qty HP, qty speed, qty damage, const std::string& textureFile);
+  Monster(qty HP, qty speed, qty damage, const std::string& textureFile, float centerX, float centerY);
   void rotateToHero(Hero*);
   /*virtual*/ void runToHero(Hero*);
   virtual void attack(Living *hero);

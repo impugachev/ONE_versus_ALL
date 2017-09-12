@@ -11,7 +11,7 @@ int main()
   heroTexture.setSmooth(true);
   sf::Sprite hero;
   hero.setTexture(heroTexture);
-  hero.setOrigin(40, 65);
+  hero.setOrigin(30, 70);
   hero.move(512, 384);
   sf::Vector2i heropos =  sf::Vector2i(512, 384);
 

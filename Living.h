@@ -11,6 +11,8 @@ protected:
   sf::Texture texture;
   const std::string textureFile;
   sf::Sprite objSprite;
+  float centerX;
+  float centerY;
 public:
   friend const sf::Vector2f & getPosition(Living* living);
   virtual void attack(Living *) = 0;

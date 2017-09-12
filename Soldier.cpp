@@ -5,8 +5,8 @@
 #include "Soldier.h"
 #include <cmath>
 
-Soldier::Soldier(qty HP, qty speed, qty damage, const std::string &textureFile, qty capacityWeapon)
-    : Monster(HP, speed, damage, textureFile), gunSoldier(capacityWeapon){}
+Soldier::Soldier(qty HP, qty speed, qty damage, const std::string &textureFile, qty capacityWeapon, float centerX, float centerY)
+    : Monster(HP, speed, damage, textureFile, centerX, centerY), gunSoldier(capacityWeapon){}
 
 void Soldier::attack(Living *hero)
 {
