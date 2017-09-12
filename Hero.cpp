@@ -3,15 +3,10 @@
 #include "Hero.h"
 
 Hero::Hero(qty HP, qty speed, qty damage, qty capacityWeapon,
-           const std::string& textureFile, float centerX, float centerY, sf::Vector2i* position = new sf::Vector2i(472,319))
-: HP(HP), speed(speed), damage(damage), gunHero(capacityWeapon),
-  textureFile(textureFile), centerX(centerX), centerY(centerY)
+           const std::string& textureFile, float centerX, float centerY)
+: Living(HP, speed, damage, textureFile, centerX, centerY), gunHero(capacityWeapon)
 {
-  texture.loadFromFile(textureFile);
-  texture.setSmooth(true);
-  objSprite.setTexture(texture);
-  objSprite.setOrigin(centerX, centerY);
-  objSprite.move(position->x, position->y);
+  objSprite.move(472, 319);
 }
 
 void Hero::attack(Living *enemy)
@@ -25,16 +20,16 @@ void Hero::attack(Living *enemy)
 
 void Hero::heroControl(sf::RenderWindow& window)
 {
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && objSprite.getPosition().y > 0 )
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)/* && objSprite.getPosition().y > 0 */)
     objSprite.move(0, -speed);
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && objSprite.getPosition().y < 768 )
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)/* && objSprite.getPosition().y < 768*/ )
     objSprite.move(0, speed);
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && objSprite.getPosition().x > 0 )
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)/* && objSprite.getPosition().x > 0 */)
     objSprite.move(-speed, 0);
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && objSprite.getPosition().y < 1024 )
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)/* && objSprite.getPosition().y < 1024 */)
     objSprite.move(speed, 0);
   sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-  sf::Vector2i vect = mousePos - objSprite.getPosition();
+  sf::Vector2i vect(mousePos.x - objSprite.getPosition().x, mousePos.y - objSprite.getPosition().y);
   float rot = acos(vect.y/sqrt(vect.x*vect.x+vect.y*vect.y))*180/3.14159265 - 180;
   objSprite.setRotation(vect.x < 0 ? rot : -rot);
 }

@@ -15,6 +15,10 @@ protected:
   float centerY;
 public:
   sf::Sprite objSprite;
+  Living() = default;
+  Living(qty HP, qty speed, qty damage,
+         const std::string& textureFile, float centerX, float centerY);
+
   friend const sf::Vector2f & getPosition(Living* living);
   virtual void attack(Living *) = 0;
   virtual void getDamage(qty dmg) = 0;

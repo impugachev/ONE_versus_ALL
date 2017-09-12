@@ -13,7 +13,6 @@ int main()
   sf::Sprite back(background, sf::IntRect(0, 0, 1024, 768));
   while (window.isOpen())
   {
-    hero.getDamage(1);
     hero.heroControl(window);
     window.clear();
     window.draw(back);

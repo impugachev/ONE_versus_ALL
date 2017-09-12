@@ -9,8 +9,7 @@ class Hero : public Living
 private:
   Weapon gunHero;
 public:
-  Hero(qty HP, qty speed, qty damage, qty capacityWeapon, const std::string& textureFile, float centerX, float centerY,
-       sf::Vector2i* position = new sf::Vector2i(512,384));
+  Hero(qty HP, qty speed, qty damage, qty capacityWeapon, const std::string& textureFile, float centerX, float centerY);
   void attack(Living *enemy); // атакует врага enemy
   void heroControl(sf::RenderWindow& window); // управление перемещением и взглядом персонажа
   void getDamage(qty dmg); // получение повреждений
