@@ -14,7 +14,7 @@ private:
   sf::Vector2f from;
   sf::Vector2f to;
 public:
-  Bullet(qty speed, sf::Vector2f from, sf::Vector2f to);
+  Bullet(sf::Vector2f from, sf::Vector2f to);
   void go();
   //~Bullet();
 };

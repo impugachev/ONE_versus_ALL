@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <cmath>
+#include <iostream>
 #include "Hero.h"
 
 Hero::Hero(qty HP, qty speed, qty damage, qty capacityWeapon,
@@ -38,16 +39,19 @@ void Hero::getDamage(qty dmg)
 {
   if (dmg >= HP)
   {
+    std::cerr<<"gameover";
+    delete this;
     //gameOver
   }
+  std::cerr<<"damage\n";
   HP -= dmg;
 }
 
-void Hero::reloadWeapon(Weapon& gunHero, sf::Clock& timer)
+void Hero::reloadWeapon(Weapon& gunHero/*, sf::Clock& timer*/)
 {
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+  /*if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
     timer.restart();
-  if(round(timer.getElapsedTime().asSeconds()) == 3)
+  if(round(timer.getElapsedTime().asSeconds()) == 3)*/
     gunHero.ammo = gunHero.capacity;
 }
 

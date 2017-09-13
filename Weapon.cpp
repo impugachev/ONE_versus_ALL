@@ -23,6 +23,8 @@ Weapon& Weapon::operator--(int)
 
 bool Weapon::shoot(sf::Vector2f from, sf::Vector2f to)
 {
+  Bullet one(from,to);
+  bullets.push_back(one);
   return false;
 }
 

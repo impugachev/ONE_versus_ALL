@@ -4,8 +4,8 @@
 
 #include "Bullet.h"
 
-Bullet::Bullet(qty speed, sf::Vector2f from, sf::Vector2f to)
-    : speed(speed), from(from), to(to)
+Bullet::Bullet(sf::Vector2f from, sf::Vector2f to)
+    : from(from), to(to), speed(10)
 {
   texture.loadFromFile("/home/igor/CLionProjects/ONE_versus_ALL/img/bullet.png");
   texture.setSmooth(true);
