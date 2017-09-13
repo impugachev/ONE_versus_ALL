@@ -21,5 +21,10 @@ Weapon& Weapon::operator--(int)
   return *this;
 }
 
+bool Weapon::shoot(sf::Vector2f from, sf::Vector2f to)
+{
+  return false;
+}
+
 
 

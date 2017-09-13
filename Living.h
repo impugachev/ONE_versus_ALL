@@ -10,7 +10,6 @@ protected:
   qty HP, speed, damage;
   sf::Texture texture;
   const std::string textureFile;
-
   float centerX;
   float centerY;
 public:

@@ -20,13 +20,13 @@ void Hero::attack(Living *enemy)
 
 void Hero::heroControl(sf::RenderWindow& window)
 {
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)/* && objSprite.getPosition().y > 0 */)
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && objSprite.getPosition().y > 0 )
     objSprite.move(0, -speed);
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)/* && objSprite.getPosition().y < 768*/ )
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && objSprite.getPosition().y < 768 )
     objSprite.move(0, speed);
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)/* && objSprite.getPosition().x > 0 */)
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && objSprite.getPosition().x > 0 )
     objSprite.move(-speed, 0);
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)/* && objSprite.getPosition().y < 1024 */)
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && objSprite.getPosition().x < 1024 )
     objSprite.move(speed, 0);
   sf::Vector2i mousePos = sf::Mouse::getPosition(window);
   sf::Vector2i vect(mousePos.x - objSprite.getPosition().x, mousePos.y - objSprite.getPosition().y);

@@ -5,7 +5,7 @@
 #ifndef ONE_VERSUS_ALL_SUPPORT_H
 #define ONE_VERSUS_ALL_SUPPORT_H
 
-typedef unsigned int qty;
+typedef int qty;
 
 struct Position
 {
