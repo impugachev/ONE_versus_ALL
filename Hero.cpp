@@ -47,7 +47,7 @@ void Hero::getDamage(qty dmg)
   HP -= dmg;
 }
 
-void Hero::reloadWeapon(Weapon& gunHero/*, sf::Clock& timer*/)
+void Hero::reloadWeapon(/*Weapon& gunHero, sf::Clock& timer*/)
 {
   /*if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
     timer.restart();
