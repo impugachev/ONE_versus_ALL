@@ -19,9 +19,10 @@ private:
   std::vector<Bullet> bullets;
 public:
   Weapon(qty capacity);
-  bool shoot(sf::Vector2f from, sf::Vector2f to);
+  void shoot(sf::Vector2f from, sf::Vector2i to);
   bool isEmpty();
   Weapon& operator-- (int);
+  void flyBullets();
 };
 
 

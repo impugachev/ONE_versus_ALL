@@ -4,7 +4,7 @@
 
 #include "Bullet.h"
 
-Bullet::Bullet(sf::Vector2f from, sf::Vector2f to)
+Bullet::Bullet(sf::Vector2f from, sf::Vector2i to)
     : from(from), to(to), speed(10)
 {
   texture.loadFromFile("/home/igor/CLionProjects/ONE_versus_ALL/img/bullet.png");
@@ -14,9 +14,14 @@ Bullet::Bullet(sf::Vector2f from, sf::Vector2f to)
   objSprite.move(from);
 }
 
-void Bullet::go()
+bool Bullet::go() //эта функция должна иметь доступ к тому вектору монстров
 {
   objSprite.move(speed,0);
   float y = to.x*from.y-from.x*to.y-(from.y-to.y)*objSprite.getPosition().x;
   objSprite.move(0,y);
+  if((objSprite.getPosition().x-heroPos.x)*(objSprite.getPosition().x-heroPos.x)+
+         (objSprite.getPosition().y-heroPos.y)*(objSprite.getPosition().y-heroPos.y) <= 100)
+    return true;
+  else
+    return false;
 }

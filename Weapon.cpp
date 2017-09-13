@@ -21,11 +21,24 @@ Weapon& Weapon::operator--(int)
   return *this;
 }
 
-bool Weapon::shoot(sf::Vector2f from, sf::Vector2f to)
+void Weapon::shoot(sf::Vector2f from, sf::Vector2i to)
 {
-  Bullet one(from,to);
-  bullets.push_back(one);
-  return false;
+  bullets.emplace_back(from,to);
+}
+
+void Weapon::flyBullets()
+{
+ /* std::for_each(bullets.begin(), bullets.end(), [&](Bullet &b) {
+    if(b.go())
+      bullets.erase(b);
+
+  });*/
+  for (auto iter = bullets.begin(); iter != bullets.end(); ++iter)
+  {
+    if(iter->go() != /*пустой Living*/)
+      // то ударить этот Living и удалить пульку
+
+  }
 }
 
 

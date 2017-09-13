@@ -14,6 +14,7 @@ public:
   void heroControl(sf::RenderWindow& window); // управление перемещением и взглядом персонажа
   void getDamage(qty dmg); // получение повреждений
   void reloadWeapon(/*Weapon& gunHero, sf::Clock& timer*/); // перезарадка оружия
+  void shoot(sf::RenderWindow &window);
   //~Hero();
 };
 

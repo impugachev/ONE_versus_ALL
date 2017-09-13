@@ -13,8 +13,8 @@ int main()
   background.loadFromFile("/home/igor/CLionProjects/ONE_versus_ALL/img/background.jpg");
   background.setRepeated(true);
   sf::Sprite back(background, sf::IntRect(0, 0, 1024, 768));
-  std::vector<Monster> monsters;
-  sf::Clock timerSpawn, timerAttack, reload, timerHero;
+  std::vector<Monster> monsters; //этот механизм надо засунуть в класс, сделать публичным и дать доступ Bullet
+  sf::Clock timerSpawn, timerAttack, reload, timerHero; // как и этот. Тогда вообще будет конфЭта
   while (window.isOpen())
   {
     if (timerSpawn.getElapsedTime().asSeconds() > 10)
@@ -30,7 +30,7 @@ int main()
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && timerHero.getElapsedTime().asSeconds() > 0.5)
     {
       timerHero.restart();
-      //hero.attack()
+
     }
     window.clear();
     window.draw(back);

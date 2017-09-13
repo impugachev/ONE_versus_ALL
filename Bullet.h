@@ -12,10 +12,10 @@ private:
   sf::Sprite objSprite;
   sf::Texture texture;
   sf::Vector2f from;
-  sf::Vector2f to;
+  sf::Vector2i to;
 public:
-  Bullet(sf::Vector2f from, sf::Vector2f to);
-  void go();
+  Bullet(sf::Vector2f from, sf::Vector2i to);
+  bool go();
   //~Bullet();
 };
 

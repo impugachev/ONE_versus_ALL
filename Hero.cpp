@@ -55,4 +55,9 @@ void Hero::reloadWeapon(/*Weapon& gunHero, sf::Clock& timer*/)
     gunHero.ammo = gunHero.capacity;
 }
 
+void Hero::shoot(sf::RenderWindow &window)
+{
+  gunHero.shoot(getPosition(this), sf::Mouse::getPosition(window));
+}
+
 
