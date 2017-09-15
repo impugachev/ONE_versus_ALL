@@ -3,12 +3,11 @@
 
 
 #include <SFML/Graphics.hpp>
-#include "support.h"
 
 class Bullet
 {
 private:
-  qty speed;
+  int speed;
   sf::Sprite objSprite;
   sf::Texture texture;
   sf::Vector2f from;

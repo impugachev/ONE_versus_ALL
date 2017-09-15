@@ -6,9 +6,24 @@
 #define ONE_VERSUS_ALL_GAME_H
 
 
+#include <SFML/Graphics.hpp>
+#include "Monster.h"
+
 class Game
 {
-
+private:
+  sf::Texture background;
+  sf::Sprite back;
+  Hero player;
+  std::vector<Monster*> zombieAndSoldiers;
+  sf::Clock timerSpawn, timerAttack, reload, timerHero;
+public:
+  sf::RenderWindow window;
+  Game();
+  void updateHero();
+  void updateEnemies();
+  void updateBullets();
+  void outToDisplay();
 };
 
 

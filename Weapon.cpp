@@ -4,7 +4,7 @@
 
 #include "Weapon.h"
 
-Weapon::Weapon(qty capacity) :
+Weapon::Weapon(int capacity) :
 capacity(capacity), ammo(capacity) {};
 
 bool Weapon::isEmpty()

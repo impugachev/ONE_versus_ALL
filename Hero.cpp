@@ -3,9 +3,21 @@
 #include <iostream>
 #include "Hero.h"
 
-Hero::Hero(qty HP, qty speed, qty damage, qty capacityWeapon,
+Hero::Hero()
+    : Living(100, 7, 5, "/home/igor/CLionProjects/ONE_versus_ALL/img/hero.png", 30, 70), gunHero(10)
+{
+  objSprite.move(472, 319);
+}
+
+Hero::Hero(int HP, int speed, int damage, int capacityWeapon)
+    :Living(HP, speed, damage, "/home/igor/CLionProjects/ONE_versus_ALL/img/hero.png", 30, 70), gunHero(capacityWeapon)
+{
+  objSprite.move(472, 319);
+}
+
+Hero::Hero(int HP, int speed, int damage, int capacityWeapon,
            const std::string& textureFile, float centerX, float centerY)
-: Living(HP, speed, damage, textureFile, centerX, centerY), gunHero(capacityWeapon)
+    : Living(HP, speed, damage, textureFile, centerX, centerY), gunHero(capacityWeapon)
 {
   objSprite.move(472, 319);
 }
@@ -35,7 +47,7 @@ void Hero::heroControl(sf::RenderWindow& window)
   objSprite.setRotation(vect.x < 0 ? rot : -rot);
 }
 
-void Hero::getDamage(qty dmg)
+void Hero::getDamage(int dmg)
 {
   if (dmg >= HP)
   {
@@ -59,5 +71,9 @@ void Hero::shoot(sf::RenderWindow &window)
 {
   gunHero.shoot(getPosition(this), sf::Mouse::getPosition(window));
 }
+
+
+
+
 
 

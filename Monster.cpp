@@ -6,36 +6,20 @@
 #include "Monster.h"
 
 Monster::Monster()
+    :Living(10,2,5,"/home/igor/CLionProjects/ONE_versus_ALL/img/zombie.png", 48, 60)
 {
-
+  objSprite.move(randPosition());
 }
 
-Monster::Monster(qty HP, qty speed, qty damage, const std::string& textureFile, float centerX, float centerY)
-: Living(HP, speed, damage, textureFile, centerX, centerY)
+Monster::Monster(int HP, int speed, int damage)
 {
-  srand(time(0));
-  sf::Vector2f position;
-  int randomizePosition = rand() % 4;
-  switch (randomizePosition)
-  {
-    case 0:
-      position.x = -20;
-      position.y = -20 + rand() % 808;
-      break;
-    case 1:
-      position.x = -20 + rand() % 1064;
-      position.y = 788;
-      break;
-    case 2:
-      position.x = 1044;
-      position.y = -20 + rand() % 808;
-      break;
-    case 3:
-      position.x = -20 + rand() % 1064;
-      position.y = -20;
-      break;
-  }
-  objSprite.move(position);
+  objSprite.move(randPosition());
+}
+
+Monster::Monster(int HP, int speed, int damage, const std::string& textureFile, float centerX, float centerY)
+    : Living(HP, speed, damage, textureFile, centerX, centerY)
+{
+  objSprite.move(randPosition());
 }
 
 void Monster::rotateToHero(Hero *hero)
@@ -67,12 +51,41 @@ void Monster::attack(Living *hero)
     hero->getDamage(damage);
 }
 
-void Monster::getDamage(qty dmg)
+void Monster::getDamage(int dmg)
 {
   if (dmg >= HP)
     delete this;
   HP -= dmg;
 }
+
+sf::Vector2f Monster::randPosition()
+{
+  srand(time(0));
+  sf::Vector2f position;
+  int randomizePosition = rand() % 4;
+  switch (randomizePosition)
+  {
+    case 0:
+      position.x = -20;
+      position.y = -20 + rand() % 808;
+      break;
+    case 1:
+      position.x = -20 + rand() % 1064;
+      position.y = 788;
+      break;
+    case 2:
+      position.x = 1044;
+      position.y = -20 + rand() % 808;
+      break;
+    case 3:
+      position.x = -20 + rand() % 1064;
+      position.y = -20;
+      break;
+  }
+  return position;
+}
+
+
 
 
 

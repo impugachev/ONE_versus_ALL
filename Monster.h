@@ -9,13 +9,16 @@
 
 class Monster : public Living
 {
+private:
+  sf::Vector2f randPosition();
 public:
   Monster();
-  Monster(qty HP, qty speed, qty damage, const std::string& textureFile, float centerX, float centerY);
+  Monster(int HP, int speed, int damage);
+  Monster(int HP, int speed, int damage, const std::string& textureFile, float centerX, float centerY);
   void rotateToHero(Hero*);
   /*virtual*/ void runToHero(Hero*);
   virtual void attack(Living *hero);
-  virtual void getDamage(qty dmg);
+  virtual void getDamage(int dmg);
   //~Monster();
 };
 

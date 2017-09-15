@@ -19,8 +19,8 @@ bool Bullet::go() //эта функция должна иметь доступ �
   objSprite.move(speed,0);
   float y = to.x*from.y-from.x*to.y-(from.y-to.y)*objSprite.getPosition().x;
   objSprite.move(0,y);
-  if((objSprite.getPosition().x-heroPos.x)*(objSprite.getPosition().x-heroPos.x)+
-         (objSprite.getPosition().y-heroPos.y)*(objSprite.getPosition().y-heroPos.y) <= 100)
+  if((objSprite.getPosition().x-monsterPos.x)*(objSprite.getPosition().x-monsterPos.x)+
+         (objSprite.getPosition().y-monsterPos.y)*(objSprite.getPosition().y-monsterPos.y) <= 100)
     return true;
   else
     return false;

@@ -5,9 +5,9 @@ const sf::Vector2f & getPosition(Living *living)
   return living->objSprite.getPosition();
 }
 
-Living::Living(qty HP, qty speed, qty damage,
+Living::Living(int HP, int speed, int damage,
                const std::string &textureFile, float centerX, float centerY)
-    :HP(HP), speed(speed), damage(damage), textureFile(textureFile), centerX(centerX), centerY(centerY)
+    :HP(HP), speed(speed), damage(damage), centerX(centerX), centerY(centerY)
 {
   texture.loadFromFile(textureFile);
   texture.setSmooth(true);
