@@ -14,14 +14,19 @@ Bullet::Bullet(sf::Vector2f from, sf::Vector2i to)
   objSprite.move(from);
 }
 
-bool Bullet::go() //эта функция должна иметь доступ к тому вектору монстров
+Living* Bullet::go(std::vector<Zombie *> *monsters, Hero *hero) //эта функция должна иметь доступ к тому вектору монстров
 {
   objSprite.move(speed,0);
   float y = to.x*from.y-from.x*to.y-(from.y-to.y)*objSprite.getPosition().x;
   objSprite.move(0,y);
-  if((objSprite.getPosition().x-monsterPos.x)*(objSprite.getPosition().x-monsterPos.x)+
-         (objSprite.getPosition().y-monsterPos.y)*(objSprite.getPosition().y-monsterPos.y) <= 100)
-    return true;
-  else
-    return false;
+  for (auto iter = monsters->begin(); iter != monsters->end(); ++iter)
+  {
+    if((objSprite.getPosition().x-(*iter)->getPosition().x)*(objSprite.getPosition().x-(*iter)->getPosition().x)+
+       (objSprite.getPosition().y-(*iter)->getPosition().y)*(objSprite.getPosition().y-(*iter)->getPosition().y) <= 100)
+      return *iter;
+  }
+  if ((objSprite.getPosition().x-hero->getPosition().x)*(objSprite.getPosition().x-hero->getPosition().x)+
+      (objSprite.getPosition().y-hero->getPosition().y)*(objSprite.getPosition().y-hero->getPosition().y) <= 100)
+    return hero;
+  return nullptr;
 }

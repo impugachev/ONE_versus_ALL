@@ -3,26 +3,27 @@
 //
 
 #include <cmath>
-#include "Monster.h"
+#include "Zombie.h"
 
-Monster::Monster()
+Zombie::Zombie()
     :Living(10,2,5,"/home/igor/CLionProjects/ONE_versus_ALL/img/zombie.png", 48, 60)
 {
   objSprite.move(randPosition());
 }
 
-Monster::Monster(int HP, int speed, int damage)
+Zombie::Zombie(int HP, int speed, int damage)
+    :Living(HP,speed,damage,"/home/igor/CLionProjects/ONE_versus_ALL/img/zombie.png", 48, 60)
 {
   objSprite.move(randPosition());
 }
 
-Monster::Monster(int HP, int speed, int damage, const std::string& textureFile, float centerX, float centerY)
+Zombie::Zombie(int HP, int speed, int damage, const std::string& textureFile, float centerX, float centerY)
     : Living(HP, speed, damage, textureFile, centerX, centerY)
 {
   objSprite.move(randPosition());
 }
 
-void Monster::rotateToHero(Hero *hero)
+void Zombie::rotateToHero(Hero *hero)
 {
   auto heroPos = getPosition(hero);
   auto vect = heroPos - this->objSprite.getPosition();
@@ -30,7 +31,7 @@ void Monster::rotateToHero(Hero *hero)
   this->objSprite.setRotation(vect.x < 0 ? rot : -rot);
 }
 
-void Monster::runToHero(Hero *hero)
+void Zombie::runToHero(Hero *hero)
 {
   auto heroPos = getPosition(hero);
   if ((objSprite.getPosition().x < heroPos.x) && (objSprite.getPosition().y < heroPos.y))
@@ -43,7 +44,7 @@ void Monster::runToHero(Hero *hero)
     objSprite.move(-speed, -speed);
 }
 
-void Monster::attack(Living *hero)
+void Zombie::attack(Living *hero)
 {
   auto heroPos = getPosition(hero);
   auto monsterPos = objSprite.getPosition();
@@ -51,14 +52,14 @@ void Monster::attack(Living *hero)
     hero->getDamage(damage);
 }
 
-void Monster::getDamage(int dmg)
+void Zombie::getDamage(int dmg)
 {
   if (dmg >= HP)
     delete this;
   HP -= dmg;
 }
 
-sf::Vector2f Monster::randPosition()
+sf::Vector2f Zombie::randPosition()
 {
   srand(time(0));
   sf::Vector2f position;

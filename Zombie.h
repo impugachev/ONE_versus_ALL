@@ -7,19 +7,19 @@
 
 #include "Hero.h"
 
-class Monster : public Living
+class Zombie : public Living
 {
 private:
   sf::Vector2f randPosition();
 public:
-  Monster();
-  Monster(int HP, int speed, int damage);
-  Monster(int HP, int speed, int damage, const std::string& textureFile, float centerX, float centerY);
+  Zombie();
+  Zombie(int HP, int speed, int damage);
+  Zombie(int HP, int speed, int damage, const std::string& textureFile, float centerX, float centerY);
   void rotateToHero(Hero*);
   /*virtual*/ void runToHero(Hero*);
   virtual void attack(Living *hero);
   virtual void getDamage(int dmg);
-  //~Monster();
+  //~Zombie();
 };
 
 

@@ -16,12 +16,13 @@ class Weapon
 private:
   int ammo, capacity;
   std::vector<Bullet> bullets;
+  Living* whose;
 public:
-  Weapon(int capacity);
+  Weapon(int capacity, Living* whose);
   void shoot(sf::Vector2f from, sf::Vector2i to);
   bool isEmpty();
   Weapon& operator-- (int);
-  void flyBullets();
+  void flyBullets(std::vector<Zombie *> *monsters, Hero *hero);
 };
 
 

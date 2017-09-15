@@ -3,6 +3,9 @@
 
 
 #include <SFML/Graphics.hpp>
+#include "Living.h"
+#include "Zombie.h"
+#include <vector>
 
 class Bullet
 {
@@ -14,7 +17,7 @@ private:
   sf::Vector2i to;
 public:
   Bullet(sf::Vector2f from, sf::Vector2i to);
-  bool go();
+  Living *go(std::vector<Zombie *> *monsters, Hero *hero);
   //~Bullet();
 };
 

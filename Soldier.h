@@ -6,9 +6,9 @@
 #define ONE_VERSUS_ALL_SOLDIER_H
 
 
-#include "Monster.h"
+#include "Zombie.h"
 
-class Soldier : public Monster
+class Soldier : public Zombie
 {
 private:
   Weapon gunSoldier;

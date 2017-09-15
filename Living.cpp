@@ -15,3 +15,10 @@ Living::Living(int HP, int speed, int damage,
   objSprite.setOrigin(centerX, centerY);
 }
 
+const sf::Vector2f &Living::getPosition()
+{
+  return this->objSprite.getPosition();
+}
+
+
+

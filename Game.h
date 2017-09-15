@@ -7,7 +7,7 @@
 
 
 #include <SFML/Graphics.hpp>
-#include "Monster.h"
+#include "Zombie.h"
 
 class Game
 {
@@ -15,8 +15,8 @@ private:
   sf::Texture background;
   sf::Sprite back;
   Hero player;
-  std::vector<Monster*> zombieAndSoldiers;
-  sf::Clock timerSpawn, timerAttack, reload, timerHero;
+  std::vector<Zombie*> allMonsters;
+  sf::Clock timerSpawnZombies, timerSpawnSoldiers, timerAttack, reload, timerHeroShoot;
 public:
   sf::RenderWindow window;
   Game();

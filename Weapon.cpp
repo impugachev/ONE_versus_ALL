@@ -4,8 +4,8 @@
 
 #include "Weapon.h"
 
-Weapon::Weapon(int capacity) :
-capacity(capacity), ammo(capacity) {};
+Weapon::Weapon(int capacity, Living* whose)
+    : capacity(capacity), ammo(capacity), whose(whose) {};
 
 bool Weapon::isEmpty()
 {
@@ -26,18 +26,14 @@ void Weapon::shoot(sf::Vector2f from, sf::Vector2i to)
   bullets.emplace_back(from,to);
 }
 
-void Weapon::flyBullets()
+void Weapon::flyBullets(std::vector<Zombie *> *monsters, Hero *hero)
 {
- /* std::for_each(bullets.begin(), bullets.end(), [&](Bullet &b) {
-    if(b.go())
-      bullets.erase(b);
-
-  });*/
+  Living* temp;
   for (auto iter = bullets.begin(); iter != bullets.end(); ++iter)
   {
-    if(iter->go() != /*пустой Living*/)
-      // то ударить этот Living и удалить пульку
-
+    temp = iter->go(monsters, hero);
+    if (temp != nullptr && temp != whose)
+      temp->getDamage(whose->damage);
   }
 }
 

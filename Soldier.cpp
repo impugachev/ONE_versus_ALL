@@ -6,16 +6,16 @@
 #include <cmath>
 
 Soldier::Soldier()
-    :Monster(),gunSoldier(10) {}
+    :Zombie(),gunSoldier(10, this) {}
 
 Soldier::Soldier(int HP, int speed, int damage, int capacityWeapon)
-    :Monster(HP, speed, damage), gunSoldier(capacityWeapon)
+    :Zombie(HP, speed, damage), gunSoldier(capacityWeapon, this)
 {
 //текстурку и ее центр тут и выше надо еще поставить
 }
 
 Soldier::Soldier(int HP, int speed, int damage, const std::string &textureFile, int capacityWeapon, float centerX, float centerY)
-    : Monster(HP, speed, damage, textureFile, centerX, centerY), gunSoldier(capacityWeapon){}
+    : Zombie(HP, speed, damage, textureFile, centerX, centerY), gunSoldier(capacityWeapon, this){}
 
 void Soldier::attack(Living *hero)
 {

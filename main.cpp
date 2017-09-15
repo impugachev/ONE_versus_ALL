@@ -1,7 +1,7 @@
 //#include <SFML/Graphics.hpp>
 #include <iostream>
 #include "Hero.h"
-#include "Monster.h"
+#include "Zombie.h"
 
 
 int main()
@@ -13,7 +13,7 @@ int main()
   background.loadFromFile("/home/igor/CLionProjects/ONE_versus_ALL/img/background.jpg");
   background.setRepeated(true);
   sf::Sprite back(background, sf::IntRect(0, 0, 1024, 768));
-  std::vector<Monster> monsters; //этот механизм надо засунуть в класс, сделать публичным и дать доступ Bullet
+  std::vector<Zombie> monsters; //этот механизм надо засунуть в класс, сделать публичным и дать доступ Bullet
   sf::Clock timerSpawn, timerAttack, reload, timerHero; // как и этот. Тогда вообще будет конфЭта
   while (window.isOpen())
   {
@@ -35,7 +35,7 @@ int main()
     window.clear();
     window.draw(back);
     std::for_each(monsters.begin(),monsters.end(),
-                  [&](Monster &z){
+                  [&](Zombie &z){
                     z.rotateToHero(&hero);
                     z.runToHero(&hero);
                     if (timerAttack.getElapsedTime().asSeconds() > 1)

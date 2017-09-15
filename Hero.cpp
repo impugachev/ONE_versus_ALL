@@ -4,20 +4,20 @@
 #include "Hero.h"
 
 Hero::Hero()
-    : Living(100, 7, 5, "/home/igor/CLionProjects/ONE_versus_ALL/img/hero.png", 30, 70), gunHero(10)
+    : Living(100, 7, 5, "/home/igor/CLionProjects/ONE_versus_ALL/img/hero.png", 30, 70), gunHero(10, this)
 {
   objSprite.move(472, 319);
 }
 
 Hero::Hero(int HP, int speed, int damage, int capacityWeapon)
-    :Living(HP, speed, damage, "/home/igor/CLionProjects/ONE_versus_ALL/img/hero.png", 30, 70), gunHero(capacityWeapon)
+    :Living(HP, speed, damage, "/home/igor/CLionProjects/ONE_versus_ALL/img/hero.png", 30, 70), gunHero(capacityWeapon, this)
 {
   objSprite.move(472, 319);
 }
 
 Hero::Hero(int HP, int speed, int damage, int capacityWeapon,
            const std::string& textureFile, float centerX, float centerY)
-    : Living(HP, speed, damage, textureFile, centerX, centerY), gunHero(capacityWeapon)
+    : Living(HP, speed, damage, textureFile, centerX, centerY), gunHero(capacityWeapon, this)
 {
   objSprite.move(472, 319);
 }
@@ -59,16 +59,16 @@ void Hero::getDamage(int dmg)
   HP -= dmg;
 }
 
-void Hero::reloadWeapon(/*Weapon& gunHero, sf::Clock& timer*/)
+void Hero::reloadWeapon()
 {
-  /*if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
-    timer.restart();
-  if(round(timer.getElapsedTime().asSeconds()) == 3)*/
     gunHero.ammo = gunHero.capacity;
 }
 
 void Hero::shoot(sf::RenderWindow &window)
 {
+  if (this->gunHero.isEmpty())
+    return;
+  gunHero--;
   gunHero.shoot(getPosition(this), sf::Mouse::getPosition(window));
 }
 
