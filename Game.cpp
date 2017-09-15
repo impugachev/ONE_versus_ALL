@@ -3,11 +3,11 @@
 //
 
 #include "Game.h"
-#include "Soldier.h"
+//#include "Soldier.h"
 
 Game::Game()
-    :window(sf::VideoMode(1024, 768), "ONE versus ALL"), timerSpawnZombies(), timerAttack(), reload(), timerHeroShoot(),
-     allMonsters(), player()
+    :window(sf::VideoMode(1024, 768), "ONE versus ALL"), timerSpawnZombies(), timerAttackMonsters(), reload(), timerHeroShoot(),
+     monsters(), player()
 {
   window.setFramerateLimit(30);
   background.loadFromFile("/home/igor/CLionProjects/ONE_versus_ALL/img/background.jpg");
@@ -26,7 +26,6 @@ void Game::updateHero()
   {
     timerHeroShoot.restart();
     player.shoot(window);
-//выстрелить
   }
 }
 
@@ -35,22 +34,40 @@ void Game::updateEnemies()
   if (timerSpawnZombies.getElapsedTime().asSeconds() > 10)
   {
     timerSpawnZombies.restart();
-    allMonsters.push_back(new Zombie());
+    monsters.push_back(new Zombie());
   }
   if (timerSpawnSoldiers.getElapsedTime().asSeconds() > 30)
   {
     timerSpawnSoldiers.restart();
-    allMonsters.push_back(new Soldier());
+    monsters.push_back(new Soldier());
   }
-  std::for_each(allMonsters.begin(),allMonsters.end(),
+  std::for_each(monsters.begin(),monsters.end(),
                 [&](Zombie *z){
                   z->rotateToHero(&player);
                   z->runToHero(&player);
-                  if (timerAttack.getElapsedTime().asSeconds() > 2)
+                  if (timerAttackMonsters.getElapsedTime().asSeconds() > 2)
                   {
                     z->attack(&player);
-                    timerAttack.restart();
+                    timerAttackMonsters.restart();
                   }
-                  //window.draw(z->objSprite);
                 });
+}
+
+void Game::updateBullets()
+{
+  player.gun.flyBullets(&monsters);
+  std::for_each(monsters.begin(), monsters.end(),
+                [](Soldier* s)
+                {
+                  s->gun.flyBullets(&player);
+                });
+}
+
+void Game::outToDisplay()
+{
+  window.clear();
+  window.draw(back);
+  window.draw(player.objSprite);
+  std::for_each(monsters.begin(), monsters.end(), [](Zombie* z){window.draw(z->objSprite);});
+  window.display();
 }

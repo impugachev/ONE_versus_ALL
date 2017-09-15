@@ -2,10 +2,10 @@
 #define ONE_VERSUS_ALL_BULLET_H
 
 
-#include <SFML/Graphics.hpp>
-#include "Living.h"
+//#include <SFML/Graphics.hpp>
+//#include <vector>
+//#include "Living.h"
 #include "Zombie.h"
-#include <vector>
 
 class Bullet
 {
@@ -17,7 +17,8 @@ private:
   sf::Vector2i to;
 public:
   Bullet(sf::Vector2f from, sf::Vector2i to);
-  Living *go(std::vector<Zombie *> *monsters, Hero *hero);
+  Zombie* go(std::vector<Zombie *> *monsters);
+  Hero* go(Hero* hero);
   //~Bullet();
 };
 

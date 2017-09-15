@@ -4,31 +4,27 @@
 #include "Hero.h"
 
 Hero::Hero()
-    : Living(100, 7, 5, "/home/igor/CLionProjects/ONE_versus_ALL/img/hero.png", 30, 70), gunHero(10, this)
+    : Living(100, 7, 5, "/home/igor/CLionProjects/ONE_versus_ALL/img/hero.png", 30, 70), gun(10, this)
 {
   objSprite.move(472, 319);
 }
 
 Hero::Hero(int HP, int speed, int damage, int capacityWeapon)
-    :Living(HP, speed, damage, "/home/igor/CLionProjects/ONE_versus_ALL/img/hero.png", 30, 70), gunHero(capacityWeapon, this)
+    :Living(HP, speed, damage, "/home/igor/CLionProjects/ONE_versus_ALL/img/hero.png", 30, 70), gun(capacityWeapon, this)
 {
   objSprite.move(472, 319);
 }
 
 Hero::Hero(int HP, int speed, int damage, int capacityWeapon,
            const std::string& textureFile, float centerX, float centerY)
-    : Living(HP, speed, damage, textureFile, centerX, centerY), gunHero(capacityWeapon, this)
+    : Living(HP, speed, damage, textureFile, centerX, centerY), gun(capacityWeapon, this)
 {
   objSprite.move(472, 319);
 }
 
 void Hero::attack(Living *enemy)
 {
-  if (this->gunHero.isEmpty())
-    return;
-  gunHero--;
-  //gunHero.shoot()
-  //enemy->getDamage(damage);
+  //пусто,ляляля
 }
 
 void Hero::heroControl(sf::RenderWindow& window)
@@ -51,25 +47,22 @@ void Hero::getDamage(int dmg)
 {
   if (dmg >= HP)
   {
-    std::cerr<<"gameover";
-    delete this;
-    //gameOver
+    delete this; //деструктор лучше
   }
-  std::cerr<<"damage\n";
   HP -= dmg;
 }
 
 void Hero::reloadWeapon()
 {
-    gunHero.ammo = gunHero.capacity;
+    gun.ammo = gun.capacity;
 }
 
 void Hero::shoot(sf::RenderWindow &window)
 {
-  if (this->gunHero.isEmpty())
+  if (this->gun.isEmpty())
     return;
-  gunHero--;
-  gunHero.shoot(getPosition(this), sf::Mouse::getPosition(window));
+  gun--;
+  gun.shoot(getPosition(this), sf::Mouse::getPosition(window));
 }
 
 

@@ -6,24 +6,20 @@
 #include <cmath>
 
 Soldier::Soldier()
-    :Zombie(),gunSoldier(10, this) {}
+    :Zombie(),gun(10, this) {}
 
 Soldier::Soldier(int HP, int speed, int damage, int capacityWeapon)
-    :Zombie(HP, speed, damage), gunSoldier(capacityWeapon, this)
+    :Zombie(HP, speed, damage), gun(capacityWeapon, this)
 {
 //текстурку и ее центр тут и выше надо еще поставить
 }
 
 Soldier::Soldier(int HP, int speed, int damage, const std::string &textureFile, int capacityWeapon, float centerX, float centerY)
-    : Zombie(HP, speed, damage, textureFile, centerX, centerY), gunSoldier(capacityWeapon, this){}
+    : Zombie(HP, speed, damage, textureFile, centerX, centerY), gun(capacityWeapon, this){}
 
 void Soldier::attack(Living *hero)
 {
-  if (this->gunSoldier.isEmpty())
-    return;
-  gunSoldier--;
-  //gunSoldier.shoot()
-  //hero->getDamage(damage);
+  // может она и не нужна в базовом классе?
 }
 
 void Soldier::getDamage(int dmg)
@@ -33,10 +29,16 @@ void Soldier::getDamage(int dmg)
   HP -= dmg;
 }
 
-void Soldier::reloadWeapon(Weapon &gunSoldier, sf::Clock& timer)
+void Soldier::reloadWeapon()
 {
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
-    timer.restart();
-  if(round(timer.getElapsedTime().asSeconds()) == 3)
-    gunSoldier.ammo = gunSoldier.capacity;
+  gun.ammo = gun.capacity;
+}
+
+void Soldier::shoot(sf::RenderWindow &window, Hero* player)
+{
+  if (this->gun.isEmpty())
+    return;
+  gun--;
+  sf::Vector2i *playerPos = new sf::Vector2i(getPosition(player).x, getPosition(player).y);
+  gun.shoot(getPosition(this), *playerPos);
 }

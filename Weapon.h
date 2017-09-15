@@ -5,9 +5,11 @@
 #ifndef ONE_VERSUS_ALL_WEAPON_H
 #define ONE_VERSUS_ALL_WEAPON_H
 
-#include <SFML/Graphics.hpp>
+//#include <SFML/Graphics.hpp>
+//#include <vector>
 #include "Bullet.h"
-#include <vector>
+#include "Living.h"
+//#include "Hero.h"
 
 class Weapon
 {
@@ -22,7 +24,8 @@ public:
   void shoot(sf::Vector2f from, sf::Vector2i to);
   bool isEmpty();
   Weapon& operator-- (int);
-  void flyBullets(std::vector<Zombie *> *monsters, Hero *hero);
+  void flyBullets(std::vector<Zombie*> *monsters);
+  void flyBullets(Hero *hero);
 };
 
 

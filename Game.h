@@ -6,8 +6,9 @@
 #define ONE_VERSUS_ALL_GAME_H
 
 
-#include <SFML/Graphics.hpp>
-#include "Zombie.h"
+//#include <SFML/Graphics.hpp>
+//#include "Zombie.h"
+#include "Soldier.h"
 
 class Game
 {
@@ -15,8 +16,8 @@ private:
   sf::Texture background;
   sf::Sprite back;
   Hero player;
-  std::vector<Zombie*> allMonsters;
-  sf::Clock timerSpawnZombies, timerSpawnSoldiers, timerAttack, reload, timerHeroShoot;
+  std::vector<Zombie*> monsters;
+  sf::Clock timerSpawnZombies, timerSpawnSoldiers, timerAttackMonsters, reload, timerHeroShoot;
 public:
   sf::RenderWindow window;
   Game();

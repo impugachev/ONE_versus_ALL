@@ -10,15 +10,15 @@
 
 class Soldier : public Zombie
 {
-private:
-  Weapon gunSoldier;
 public:
+  Weapon gun;
   Soldier();
   Soldier(int HP, int speed, int damage, int capacityWeapon);
   Soldier(int HP, int speed, int damage, const std::string& textureFile, int capacityWeapon,  float centerX, float centerY);
   void attack(Living* hero) override;
   void getDamage(int dmg) override;
-  void reloadWeapon(Weapon& gunSoldier, sf::Clock& timer);
+  void reloadWeapon();
+  void shoot(sf::RenderWindow &window, Hero* player);
   //void runToHero(Hero*);
   //~Soldier();
 };

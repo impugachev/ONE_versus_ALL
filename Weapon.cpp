@@ -26,12 +26,23 @@ void Weapon::shoot(sf::Vector2f from, sf::Vector2i to)
   bullets.emplace_back(from,to);
 }
 
-void Weapon::flyBullets(std::vector<Zombie *> *monsters, Hero *hero)
+void Weapon::flyBullets(std::vector<Zombie *> *monsters)
 {
   Living* temp;
   for (auto iter = bullets.begin(); iter != bullets.end(); ++iter)
   {
-    temp = iter->go(monsters, hero);
+    temp = iter->go(monsters);
+    if (temp != nullptr && temp != whose)
+      temp->getDamage(whose->damage);
+  }
+}
+
+void Weapon::flyBullets(Hero *hero)
+{
+  Living* temp;
+  for (auto iter = bullets.begin(); iter != bullets.end(); ++iter)
+  {
+    temp = iter->go(hero);
     if (temp != nullptr && temp != whose)
       temp->getDamage(whose->damage);
   }

@@ -8,11 +8,11 @@ class Living
 protected:
   int HP, speed;
   sf::Texture texture;
-  sf::Sprite objSprite;
   float centerX;
   float centerY;
 public:
   int damage;
+  sf::Sprite objSprite;
   Living() = default;
   Living(int HP, int speed, int damage,
          const std::string& textureFile, float centerX, float centerY);
