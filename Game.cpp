@@ -59,7 +59,7 @@ void Game::updateBullets()
                   window.draw(b.objSprite);
                 });
   std::for_each(monsters.begin(), monsters.end(),
-                [&](Zombie* z/*, Hero &player*/)
+                [&](Zombie* z)
                 {
                   auto s = dynamic_cast<Soldier*>(z);
                   std::for_each(s->gun.bullets.begin(), s->gun.bullets.end(),
@@ -76,6 +76,6 @@ void Game::outToDisplay()
   window.clear();
   window.draw(back);
   window.draw(player.objSprite);
-  std::for_each(monsters.begin(), monsters.end(), [&](Zombie* z/*, sf::RenderWindow &window*/){window.draw(z->objSprite);});
+  std::for_each(monsters.begin(), monsters.end(), [&](Zombie* z){window.draw(z->objSprite);});
   window.display();
 }

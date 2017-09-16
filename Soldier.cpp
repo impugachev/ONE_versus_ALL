@@ -5,10 +5,10 @@
 #include "Hero.h"
 
 Soldier::Soldier()
-    :Zombie(),gun(10, this) {}
+    :Zombie(20, 5, 10, "/home/igor/CLionProjects/ONE_versus_ALL/img/soldier.png",20, 70),gun(10, this) {}
 
 Soldier::Soldier(int HP, int speed, int damage, int capacityWeapon)
-    :Zombie(HP, speed, damage), gun(capacityWeapon, this)
+    :Zombie(HP, speed, damage, "/home/igor/CLionProjects/ONE_versus_ALL/img/soldier.png",20, 70), gun(capacityWeapon, this)
 {
 //текстурку и ее центр тут и выше надо еще поставить
 }
