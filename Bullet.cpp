@@ -1,8 +1,6 @@
-//
-// Created by igor on 08.09.17.
-//
-
 #include "Bullet.h"
+#include "Zombie.h"
+#include "Hero.h"
 
 Bullet::Bullet(sf::Vector2f from, sf::Vector2i to)
     : from(from), to(to), speed(10)
@@ -19,11 +17,11 @@ Zombie* Bullet::go(std::vector<Zombie *> *monsters) //эта функция до
   objSprite.move(speed,0);
   float y = to.x*from.y-from.x*to.y-(from.y-to.y)*objSprite.getPosition().x;
   objSprite.move(0,y);
-  for (auto iter = monsters->begin(); iter != monsters->end(); ++iter)
+  for (auto &monster : *monsters)
   {
-    if((objSprite.getPosition().x-(*iter)->getPosition().x)*(objSprite.getPosition().x-(*iter)->getPosition().x)+
-       (objSprite.getPosition().y-(*iter)->getPosition().y)*(objSprite.getPosition().y-(*iter)->getPosition().y) <= 100)
-      return *iter;
+    if((objSprite.getPosition().x- monster->getPosition().x)*(objSprite.getPosition().x- monster->getPosition().x)+
+       (objSprite.getPosition().y- monster->getPosition().y)*(objSprite.getPosition().y- monster->getPosition().y) <= 100)
+      return monster;
   }
 
   return nullptr;

@@ -1,9 +1,8 @@
 //
 // Created by igor on 08.09.17.
 //
-
 #include "Soldier.h"
-#include <cmath>
+#include "Hero.h"
 
 Soldier::Soldier()
     :Zombie(),gun(10, this) {}
@@ -39,6 +38,6 @@ void Soldier::shoot(sf::RenderWindow &window, Hero* player)
   if (this->gun.isEmpty())
     return;
   gun--;
-  sf::Vector2i *playerPos = new sf::Vector2i(getPosition(player).x, getPosition(player).y);
-  gun.shoot(getPosition(this), *playerPos);
+  sf::Vector2i *playerPos = new sf::Vector2i(player->objSprite.getPosition().x, player->objSprite.getPosition().y);
+  gun.shoot(this->getPosition(), *playerPos);
 }

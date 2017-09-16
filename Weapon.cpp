@@ -1,8 +1,9 @@
-//
-// Created by igor on 08.09.17.
-//
 
 #include "Weapon.h"
+#include "Bullet.h"
+#include "Living.h"
+#include "Zombie.h"
+#include "Hero.h"
 
 Weapon::Weapon(int capacity, Living* whose)
     : capacity(capacity), ammo(capacity), whose(whose) {};
@@ -29,9 +30,9 @@ void Weapon::shoot(sf::Vector2f from, sf::Vector2i to)
 void Weapon::flyBullets(std::vector<Zombie *> *monsters)
 {
   Living* temp;
-  for (auto iter = bullets.begin(); iter != bullets.end(); ++iter)
+  for (auto &bullet : bullets)
   {
-    temp = iter->go(monsters);
+    temp = bullet.go(monsters);
     if (temp != nullptr && temp != whose)
       temp->getDamage(whose->damage);
   }

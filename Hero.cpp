@@ -1,7 +1,5 @@
-#include <SFML/Graphics.hpp>
-#include <cmath>
-#include <iostream>
 #include "Hero.h"
+#include <cmath>
 
 Hero::Hero()
     : Living(100, 7, 5, "/home/igor/CLionProjects/ONE_versus_ALL/img/hero.png", 30, 70), gun(10, this)
@@ -62,7 +60,7 @@ void Hero::shoot(sf::RenderWindow &window)
   if (this->gun.isEmpty())
     return;
   gun--;
-  gun.shoot(getPosition(this), sf::Mouse::getPosition(window));
+  gun.shoot(this->getPosition(), sf::Mouse::getPosition(window));
 }
 
 

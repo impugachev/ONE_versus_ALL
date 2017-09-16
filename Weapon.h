@@ -5,14 +5,16 @@
 #ifndef ONE_VERSUS_ALL_WEAPON_H
 #define ONE_VERSUS_ALL_WEAPON_H
 
-//#include <SFML/Graphics.hpp>
-//#include <vector>
+#include <SFML/Graphics.hpp>
 #include "Bullet.h"
-#include "Living.h"
-//#include "Hero.h"
+
+class Living;
+class Zombie;
+class Hero;
 
 class Weapon
 {
+  friend class Game;
   friend class Hero;
   friend class Soldier;
 private:

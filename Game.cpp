@@ -1,9 +1,6 @@
-//
-// Created by igor on 10.09.17.
-//
-
 #include "Game.h"
-//#include "Soldier.h"
+#include "Hero.h"
+#include "Soldier.h"
 
 Game::Game()
     :window(sf::VideoMode(1024, 768), "ONE versus ALL"), timerSpawnZombies(), timerAttackMonsters(), reload(), timerHeroShoot(),
@@ -56,9 +53,20 @@ void Game::updateEnemies()
 void Game::updateBullets()
 {
   player.gun.flyBullets(&monsters);
-  std::for_each(monsters.begin(), monsters.end(),
-                [](Soldier* s)
+  std::for_each(player.gun.bullets.begin(), player.gun.bullets.end(),
+                [&](Bullet b)
                 {
+                  window.draw(b.objSprite);
+                });
+  std::for_each(monsters.begin(), monsters.end(),
+                [&](Zombie* z/*, Hero &player*/)
+                {
+                  auto s = dynamic_cast<Soldier*>(z);
+                  std::for_each(s->gun.bullets.begin(), s->gun.bullets.end(),
+                                [&](Bullet b)
+                                {
+                                  window.draw(b.objSprite);
+                                });
                   s->gun.flyBullets(&player);
                 });
 }
@@ -68,6 +76,6 @@ void Game::outToDisplay()
   window.clear();
   window.draw(back);
   window.draw(player.objSprite);
-  std::for_each(monsters.begin(), monsters.end(), [](Zombie* z){window.draw(z->objSprite);});
+  std::for_each(monsters.begin(), monsters.end(), [&](Zombie* z/*, sf::RenderWindow &window*/){window.draw(z->objSprite);});
   window.display();
 }

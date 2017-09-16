@@ -1,7 +1,7 @@
 #ifndef ONE_VERSUS_ALL_HERO_H
 #define ONE_VERSUS_ALL_HERO_H
 
-//#include "Living.h"
+#include "Living.h"
 #include "Weapon.h"
 
 class Hero : public Living

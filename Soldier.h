@@ -1,12 +1,11 @@
-//
-// Created by igor on 08.09.17.
-//
-
 #ifndef ONE_VERSUS_ALL_SOLDIER_H
 #define ONE_VERSUS_ALL_SOLDIER_H
 
-
 #include "Zombie.h"
+#include "Weapon.h"
+
+class Living;
+class Hero;
 
 class Soldier : public Zombie
 {

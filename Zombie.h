@@ -5,7 +5,8 @@
 #ifndef ONE_VERSUS_ALL_MONSTER_H
 #define ONE_VERSUS_ALL_MONSTER_H
 
-#include "Hero.h"
+#include "Living.h"
+class Hero;
 
 class Zombie : public Living
 {
