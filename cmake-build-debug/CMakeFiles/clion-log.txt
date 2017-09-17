@@ -1,0 +1,5 @@
+/home/igor/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/172.3968.17/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/igor/CLionProjects/ONE_versus_ALL
+-- Found SFML 2.4.1 in /usr/include
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/igor/CLionProjects/ONE_versus_ALL/cmake-build-debug
