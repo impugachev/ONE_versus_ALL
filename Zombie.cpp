@@ -6,7 +6,7 @@
 #include <cmath>
 
 Zombie::Zombie()
-    :Living(100,3,5,"/home/igor/CLionProjects/ONE_versus_ALL/img/zombie.png", 48, 60)
+    :Living(10,3,5,"/home/igor/CLionProjects/ONE_versus_ALL/img/zombie.png", 48, 60)
 {
   objSprite.move(randPosition());
 }

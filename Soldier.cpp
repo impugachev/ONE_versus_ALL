@@ -5,7 +5,7 @@
 #include "Hero.h"
 
 Soldier::Soldier()
-    :Zombie(20, 1, 10, "/home/igor/CLionProjects/ONE_versus_ALL/img/soldier.png",20, 70),gun(10, this) {}
+    :Zombie(20, 1, 100, "/home/igor/CLionProjects/ONE_versus_ALL/img/soldier.png",20, 70),gun(10, this) {}
 
 Soldier::Soldier(int HP, int speed, int damage, int capacityWeapon)
     :Zombie(HP, speed, damage, "/home/igor/CLionProjects/ONE_versus_ALL/img/soldier.png",20, 70), gun(capacityWeapon, this)
