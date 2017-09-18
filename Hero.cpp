@@ -2,7 +2,7 @@
 #include <cmath>
 
 Hero::Hero()
-    : Living(100, 7, 5, "/home/igor/CLionProjects/ONE_versus_ALL/img/hero.png", 30, 70), gun(10, this)
+    : Living(10, 7, 5, "/home/igor/CLionProjects/ONE_versus_ALL/img/hero.png", 30, 70), gun(10, this)
 {
   objSprite.move(472, 319);
 }

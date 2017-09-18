@@ -4,7 +4,6 @@
 
 int main()
 {
-  sf::Clock t;
   Game game;
   while (game.window.isOpen())
   {
@@ -14,15 +13,10 @@ int main()
       if (event.type == sf::Event::Closed)
         game.window.close();
     }
-    if (t.getElapsedTime().asSeconds() > 10)
-    {
-      std::cerr<<t.getElapsedTime().asSeconds()<<'\n';
-    }
     game.updateHero();
     game.updateEnemies();
-    //game.updateBullets();
+    game.updateBullets();
     game.outToDisplay();
-    std::cerr<<t.getElapsedTime().asSeconds()<<'\n';
   }
   return 0;
 }

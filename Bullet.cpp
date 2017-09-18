@@ -16,7 +16,7 @@ Zombie* Bullet::go(std::vector<Zombie *> *monsters) //эта функция до
 {
   objSprite.move(speed,0);
   float y = to.x*from.y-from.x*to.y-(from.y-to.y)*objSprite.getPosition().x;
-  objSprite.move(0,y);
+  //objSprite.move(0,y);
   for (auto &monster : *monsters)
   {
     if((objSprite.getPosition().x- monster->getPosition().x)*(objSprite.getPosition().x- monster->getPosition().x)+
@@ -29,6 +29,9 @@ Zombie* Bullet::go(std::vector<Zombie *> *monsters) //эта функция до
 
 Hero* Bullet::go(Hero *hero)
 {
+  objSprite.move(speed,0);
+  float y = to.x*from.y-from.x*to.y-(from.y-to.y)*objSprite.getPosition().x;
+  objSprite.move(0,y);
   if ((objSprite.getPosition().x-hero->getPosition().x)*(objSprite.getPosition().x-hero->getPosition().x)+
       (objSprite.getPosition().y-hero->getPosition().y)*(objSprite.getPosition().y-hero->getPosition().y) <= 100)
     return hero;

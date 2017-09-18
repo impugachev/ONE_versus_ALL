@@ -3,7 +3,7 @@
 #include "Soldier.h"
 
 Game::Game()
-    :window(sf::VideoMode(1024, 768), "ONE versus ALL"), timerSpawnZombies(), timerAttackMonsters(), reload(), timerHeroShoot(),
+    :window(sf::VideoMode(1024, 768), "ONE versus ALL", sf::Style::Close), timerSpawnZombies(), timerAttackMonsters(), reload(), timerHeroShoot(),
      monsters(), player()
 {
   window.setFramerateLimit(30);
@@ -59,22 +59,24 @@ void Game::updateBullets()
                   window.draw(b.objSprite);
                 });
   std::for_each(monsters.begin(), monsters.end(),
-                [&](Zombie* z)
-                {
-                  auto s = dynamic_cast<Soldier*>(z);
-                  std::for_each(s->gun.bullets.begin(), s->gun.bullets.end(),
-                                [&](Bullet b)
-                                {
-                                  window.draw(b.objSprite);
-                                });
-                  s->gun.flyBullets(&player);
+                [&](Zombie* z) {
+                  auto s = dynamic_cast<Soldier *>(z);
+                  if (s != NULL)
+                  {
+                    std::for_each(s->gun.bullets.begin(), s->gun.bullets.end(),
+                                  [&](Bullet b)
+                                  {
+                                    window.draw(b.objSprite);
+                                  });
+                    s->gun.flyBullets(&player);
+                  }
                 });
 }
 
 void Game::outToDisplay()
 {
   window.clear();
-  window.draw(back);
+  //window.draw(back);
   window.draw(player.objSprite);
   std::for_each(monsters.begin(), monsters.end(), [&](Zombie* z){window.draw(z->objSprite);});
   window.display();

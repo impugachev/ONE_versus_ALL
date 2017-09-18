@@ -41,9 +41,9 @@ void Weapon::flyBullets(std::vector<Zombie *> *monsters)
 void Weapon::flyBullets(Hero *hero)
 {
   Living* temp;
-  for (auto iter = bullets.begin(); iter != bullets.end(); ++iter)
+  for (auto &bullet : bullets)
   {
-    temp = iter->go(hero);
+    temp = bullet.go(hero);
     if (temp != nullptr && temp != whose)
       temp->getDamage(whose->damage);
   }
