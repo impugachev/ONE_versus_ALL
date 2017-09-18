@@ -53,6 +53,19 @@ void Game::updateEnemies()
 void Game::updateBullets()
 {
   player.gun.flyBullets(&monsters);
+
+  std::for_each(monsters.begin(), monsters.end(),
+                [&](Zombie* z) {
+                  auto s = dynamic_cast<Soldier *>(z);
+                  if (s != NULL)
+                    s->gun.flyBullets(&player);
+                });
+}
+
+void Game::outToDisplay()
+{
+  window.clear();
+  window.draw(back);
   std::for_each(player.gun.bullets.begin(), player.gun.bullets.end(),
                 [&](Bullet b)
                 {
@@ -68,15 +81,8 @@ void Game::updateBullets()
                                   {
                                     window.draw(b.objSprite);
                                   });
-                    s->gun.flyBullets(&player);
                   }
                 });
-}
-
-void Game::outToDisplay()
-{
-  window.clear();
-  //window.draw(back);
   window.draw(player.objSprite);
   std::for_each(monsters.begin(), monsters.end(), [&](Zombie* z){window.draw(z->objSprite);});
   window.display();

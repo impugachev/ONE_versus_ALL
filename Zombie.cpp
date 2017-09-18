@@ -55,7 +55,7 @@ void Zombie::attack(Living *hero)
 void Zombie::getDamage(int dmg)
 {
   if (dmg >= HP)
-    delete this;
+    //~Zombie(this);
   HP -= dmg;
 }
 
