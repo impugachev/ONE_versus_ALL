@@ -10,10 +10,7 @@ Weapon::Weapon(int capacity, Living* whose)
 
 bool Weapon::isEmpty()
 {
-  if (this->ammo == 0)
-    return true;
-  else
-    return false;
+  return this->ammo == 0;
 }
 
 Weapon& Weapon::operator--(int)
@@ -29,16 +26,19 @@ void Weapon::shoot(sf::Vector2f from, sf::Vector2i to)
 
 void Weapon::flyBullets(std::vector<Zombie *> &monsters)
 {
-  //Zombie* temp;
+  //if (!monsters.empty())
   for (auto iter = bullets.begin(); iter != bullets.end(); ++iter)
   {
     auto bullet = *iter;
     auto iterToMonster = bullet->go(monsters);
-    auto monster = *iterToMonster;
-    if (iterToMonster != monsters.end() && monster != whose && monster->getDamage(whose->damage))
+    if (!monsters.empty())
     {
-      delete(monster);
-      monsters.erase(iterToMonster);
+      auto monster = *iterToMonster;
+      if (iterToMonster != monsters.end() && monster != whose && monster->getDamage(whose->damage))
+      {
+        delete(monster);
+        monsters.erase(iterToMonster);
+      }
     }
     if (bullet->objSprite.getPosition().x > 1024 || bullet->objSprite.getPosition().y > 768 ||
         bullet->objSprite.getPosition().x < 0 || bullet->objSprite.getPosition().y < 0)
