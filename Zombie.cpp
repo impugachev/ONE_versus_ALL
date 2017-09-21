@@ -44,7 +44,7 @@ void Zombie::runToHero(Hero *hero)
     objSprite.move(-speed, -speed);
 }
 
-void Zombie::attack(Living *hero)
+void Zombie::attack(Living *hero, sf::RenderWindow &)
 {
   auto heroPos = hero->getPosition();
   auto monsterPos = objSprite.getPosition();
@@ -52,11 +52,12 @@ void Zombie::attack(Living *hero)
     hero->getDamage(damage);
 }
 
-void Zombie::getDamage(int dmg)
+bool Zombie::getDamage(int dmg)
 {
   if (dmg >= HP)
-    //~Zombie(this);
+    return true;
   HP -= dmg;
+  return false;
 }
 
 sf::Vector2f Zombie::randPosition()

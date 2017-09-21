@@ -14,8 +14,8 @@ public:
   Soldier();
   Soldier(int HP, int speed, int damage, int capacityWeapon);
   Soldier(int HP, int speed, int damage, const std::string& textureFile, int capacityWeapon,  float centerX, float centerY);
-  void attack(Living* hero) override;
-  void getDamage(int dmg) override;
+  void attack(Living* hero, sf::RenderWindow&) override;
+  bool getDamage(int dmg) override;
   void reloadWeapon();
   void shoot(sf::RenderWindow &window, Hero* player);
   //void runToHero(Hero*);

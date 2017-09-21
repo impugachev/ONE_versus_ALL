@@ -6,8 +6,6 @@ class Zombie;
 #include <SFML/Graphics.hpp>
 #include "Hero.h"
 
-
-
 class Game
 {
 private:

@@ -18,8 +18,8 @@ public:
   Zombie(int HP, int speed, int damage, const std::string& textureFile, float centerX, float centerY);
   void rotateToHero(Hero*);
   /*virtual*/ void runToHero(Hero*);
-  virtual void attack(Living *hero);
-  virtual void getDamage(int dmg);
+  virtual void attack(Living *hero, sf::RenderWindow &);
+  virtual bool getDamage(int dmg);
   //~Zombie();
 };
 

@@ -3,7 +3,6 @@ project(ONE_versus_ALL)
 
 set(CMAKE_CXX_STANDARD 11)
 set(EXECUTABLE_NAME "SFML")
-
 set(SOURCE_FILES main.cpp Living.cpp Living.h Hero.cpp Hero.h Zombie.cpp Zombie.h Weapon.cpp Weapon.h Bullet.cpp Bullet.h
         Soldier.cpp Soldier.h Game.cpp Game.h)
 add_executable(SFML ${SOURCE_FILES})

@@ -17,7 +17,7 @@ private:
 public:
   sf::Sprite objSprite;
   Bullet(sf::Vector2f from, sf::Vector2i to);
-  Zombie* go(std::vector<Zombie *> *monsters);
+  std::vector<Zombie *>::iterator go(std::vector<Zombie *> &monsters);
   Hero* go(Hero* hero);
   //~Bullet();
 };

@@ -8,8 +8,6 @@ class Living
 protected:
   int HP, speed;
   sf::Texture texture;
-  float centerX;
-  float centerY;
 public:
   int damage;
   sf::Sprite objSprite;
@@ -18,8 +16,8 @@ public:
          const std::string& textureFile, float centerX, float centerY);
   const sf::Vector2f & getPosition();
   friend const sf::Vector2f & getPosition(Living* living);
-  virtual void attack(Living *) = 0;
-  virtual void getDamage(int dmg) = 0;
+  virtual void attack(Living *, sf::RenderWindow &) = 0;
+  virtual bool getDamage(int dmg) = 0;
   //virtual ~Living() = default;
 };
 

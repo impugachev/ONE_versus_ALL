@@ -20,7 +20,7 @@ Hero::Hero(int HP, int speed, int damage, int capacityWeapon,
   objSprite.move(472, 319);
 }
 
-void Hero::attack(Living *enemy)
+void Hero::attack(Living *enemy, sf::RenderWindow &)
 {
   //пусто,ляляля
 }
@@ -41,13 +41,15 @@ void Hero::heroControl(sf::RenderWindow& window)
   objSprite.setRotation(vect.x < 0 ? rot : -rot);
 }
 
-void Hero::getDamage(int dmg)
+bool Hero::getDamage(int dmg)
 {
   if (dmg >= HP)
   {
-    delete this; //деструктор лучше
+    //game over
+    return true;
   }
   HP -= dmg;
+  return false;
 }
 
 void Hero::reloadWeapon()

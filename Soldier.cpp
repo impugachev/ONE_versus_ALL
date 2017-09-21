@@ -16,16 +16,18 @@ Soldier::Soldier(int HP, int speed, int damage, int capacityWeapon)
 Soldier::Soldier(int HP, int speed, int damage, const std::string &textureFile, int capacityWeapon, float centerX, float centerY)
     : Zombie(HP, speed, damage, textureFile, centerX, centerY), gun(capacityWeapon, this){}
 
-void Soldier::attack(Living *hero)
+void Soldier::attack(Living* hero, sf::RenderWindow& window)
 {
-  // может она и не нужна в базовом классе?
+  auto player = dynamic_cast<Hero*>(hero);
+  this->shoot(window,player);
 }
 
-void Soldier::getDamage(int dmg)
+bool Soldier::getDamage(int dmg)
 {
   if (dmg >= HP)
-    delete this;
+    return true;
   HP -= dmg;
+  return false;
 }
 
 void Soldier::reloadWeapon()

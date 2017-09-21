@@ -19,14 +19,14 @@ class Weapon
   friend class Soldier;
 private:
   int ammo, capacity;
-  std::vector<Bullet> bullets;
+  std::vector<Bullet*> bullets;
   Living* whose;
 public:
   Weapon(int capacity, Living* whose);
   void shoot(sf::Vector2f from, sf::Vector2i to);
   bool isEmpty();
   Weapon& operator-- (int);
-  void flyBullets(std::vector<Zombie*> *monsters);
+  void flyBullets(std::vector<Zombie*> &monsters);
   void flyBullets(Hero *hero);
 };
 

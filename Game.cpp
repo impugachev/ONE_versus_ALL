@@ -39,12 +39,13 @@ void Game::updateEnemies()
     monsters.push_back(new Soldier());
   }
   std::for_each(monsters.begin(),monsters.end(),
-                [&](Zombie *z){
+                [&](Zombie *z)
+                {
                   z->rotateToHero(&player);
                   z->runToHero(&player);
                   if (timerAttackMonsters.getElapsedTime().asSeconds() > 2)
                   {
-                    z->attack(&player);
+                    z->attack(&player, window);
                     timerAttackMonsters.restart();
                   }
                 });
@@ -52,8 +53,7 @@ void Game::updateEnemies()
 
 void Game::updateBullets()
 {
-  player.gun.flyBullets(&monsters);
-
+  player.gun.flyBullets(monsters);
   std::for_each(monsters.begin(), monsters.end(),
                 [&](Zombie* z) {
                   auto s = dynamic_cast<Soldier *>(z);
@@ -67,9 +67,9 @@ void Game::outToDisplay()
   window.clear();
   window.draw(back);
   std::for_each(player.gun.bullets.begin(), player.gun.bullets.end(),
-                [&](Bullet b)
+                [&](Bullet* b)
                 {
-                  window.draw(b.objSprite);
+                  window.draw(b->objSprite);
                 });
   std::for_each(monsters.begin(), monsters.end(),
                 [&](Zombie* z) {
@@ -77,9 +77,9 @@ void Game::outToDisplay()
                   if (s != NULL)
                   {
                     std::for_each(s->gun.bullets.begin(), s->gun.bullets.end(),
-                                  [&](Bullet b)
+                                  [&](Bullet* b)
                                   {
-                                    window.draw(b.objSprite);
+                                    window.draw(b->objSprite);
                                   });
                   }
                 });
