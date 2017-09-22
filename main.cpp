@@ -4,7 +4,7 @@
 
 int main()
 {
-  Game game;
+  Game game("/home/igor/CLionProjects/ONE_versus_ALL/save");
   while (game.window.isOpen())
   {
     sf::Event event;

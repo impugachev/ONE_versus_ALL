@@ -1,10 +1,13 @@
+#include <fstream>
+//#include <map>
 #include "Game.h"
 #include "Hero.h"
 #include "Soldier.h"
 
+
 Game::Game()
-    :window(sf::VideoMode(1024, 768), "ONE versus ALL", sf::Style::Close), timerSpawnZombies(), timerAttackMonsters(), reload(), timerHeroShoot(),
-     monsters(), player()
+    :window(sf::VideoMode(1024, 768), "ONE versus ALL", sf::Style::Close), timerSpawnZombies(), timerAttackMonsters(),
+     reload(), timerHeroShoot(), monsters(), player()
 {
   window.setFramerateLimit(30);
   background.loadFromFile("/home/igor/CLionProjects/ONE_versus_ALL/img/background.jpg");
@@ -87,3 +90,65 @@ void Game::outToDisplay()
   std::for_each(monsters.begin(), monsters.end(), [&](Zombie* z){window.draw(z->objSprite);});
   window.display();
 }
+
+void Game::loadGame(const char* fileName)
+{
+  std::fstream savefile(fileName, std::ios::in);
+  std::string buffer;
+  getline(savefile,buffer);
+  buffer == "#SAVE_GAME_ONE_VERSUS_ALL#" ? 0:throw 1;
+  getline(savefile,buffer);
+  getline(savefile,buffer);
+  buffer == "Hero" ? 0:throw 1;
+  getline(savefile,buffer);
+  int *saveHero = new int[7];
+  for (int i = 0; i < 7; ++i)
+  {
+    getline(savefile,buffer);
+    size_t posSpace = buffer.find(' ')+1;
+    saveHero[i] = std::stoi(buffer, &posSpace);
+  }
+  int *saveZombie = new int[5];
+  int *saveSoldier = new int[7];
+  std::vector<int*> savesZombie;
+  std::vector<int*> savesSoldier;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

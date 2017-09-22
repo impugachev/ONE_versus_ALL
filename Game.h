@@ -21,6 +21,8 @@ public:
   void updateEnemies();
   void updateBullets();
   void outToDisplay();
+  void loadGame(const char* fileName);
+  void saveGame(const char* fileName);
 };
 
 
