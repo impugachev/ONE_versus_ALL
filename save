@@ -1,0 +1,36 @@
+#SAVE_GAME_ONE_VERSUS_ALL#
+Hero
+**********
+HP 100
+speed 7
+damage 10
+positionX 1000
+positionY 700
+capacityWeapon 30
+##########
+Zombie0
+----------
+HP 10
+speed 5
+damage 5
+positionX 0
+positionY 0
+**********
+Zombie1
+----------
+HP 10
+speed 5
+damage 5
+positionX 1024
+positionY 768
+##########
+Soldier0
+----------
+HP 20
+speed 3
+damage 10
+postionX 500
+positionY 500
+capasityWeapon 0
+##########
+#END_SAVE_FILE#
