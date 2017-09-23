@@ -21,7 +21,7 @@ Weapon& Weapon::operator--(int)
 
 void Weapon::shoot(sf::Vector2f from, sf::Vector2i to)
 {
-  bullets.emplace_back(new Bullet(from,to));
+  bullets.push_back(new Bullet(from,to));
 }
 
 void Weapon::flyBullets(std::vector<Zombie *> &monsters)
@@ -51,7 +51,7 @@ void Weapon::flyBullets(std::vector<Zombie *> &monsters)
   }
 }
 
-void Weapon::flyBullets(Hero *hero)
+void Weapon::flyBullets(Hero *hero) //доработать
 {
   Hero* temp;
   for (auto iter = bullets.begin(); iter != bullets.end(); ++iter)

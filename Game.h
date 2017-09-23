@@ -13,7 +13,7 @@ private:
   sf::Sprite back;
   Hero player;
   std::vector<Zombie*> monsters;
-  sf::Clock timerSpawnZombies, timerSpawnSoldiers, timerAttackMonsters, reload, timerHeroShoot;
+  sf::Clock timerSpawnZombies, timerSpawnSoldiers, timerAttackMonsters, reload, timerHeroShoot, reloadSoldier;
 public:
   sf::RenderWindow window;
   Game();

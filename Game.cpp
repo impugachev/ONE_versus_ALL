@@ -7,7 +7,7 @@
 
 Game::Game()
     :window(sf::VideoMode(1024, 768), "ONE versus ALL", sf::Style::Close), timerSpawnZombies(), timerAttackMonsters(),
-     reload(), timerHeroShoot(), monsters(), player()
+     reload(), timerHeroShoot(), reloadSoldier(), monsters(), player()
 {
   window.setFramerateLimit(30);
   background.loadFromFile("/home/igor/CLionProjects/ONE_versus_ALL/img/background.jpg");
@@ -22,7 +22,7 @@ void Game::updateHero()
     reload.restart();
   if (reload.getElapsedTime().asSeconds() > 3.0 && reload.getElapsedTime().asSeconds() < 3.1)
     player.reloadWeapon();
-  if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && timerHeroShoot.getElapsedTime().asSeconds() > 0.5)
+  if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && timerHeroShoot.getElapsedTime().asSeconds() > 0.1)
   {
     timerHeroShoot.restart();
     player.shoot(window);
@@ -61,7 +61,15 @@ void Game::updateBullets()
                 [&](Zombie* z) {
                   auto s = dynamic_cast<Soldier *>(z);
                   if (s != NULL)
+                  {
                     s->gun.flyBullets(&player);
+                    if (s->gun.isEmpty())
+                    {
+                      reloadSoldier.restart();
+                      if (reloadSoldier.getElapsedTime().asSeconds() > 3.0 && reloadSoldier.getElapsedTime().asSeconds() < 3.1)
+                        s->reloadWeapon();
+                    }
+                  }
                 });
 }
 

@@ -14,7 +14,7 @@ Bullet::Bullet(sf::Vector2f from, sf::Vector2i to)
 
 std::vector<Zombie *>::iterator Bullet::go(std::vector<Zombie *> &monsters)
 {
-  float y = (from.x*to.y-to.x*from.y-(to.y-from.y)*objSprite.getPosition().x)/(from.x-to.x);
+  float y = (from.x*to.y-to.x*from.y-(to.y-from.y)*objSprite.getPosition().x)/(from.x-to.x); // Может с формулой напортачил?
   objSprite.setPosition(objSprite.getPosition().x+((from.x-to.x) < 0 ? speed: -speed),y);
   for (auto iter = monsters.begin(); iter != monsters.end(); ++iter)
   {
