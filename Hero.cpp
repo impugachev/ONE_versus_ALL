@@ -65,6 +65,17 @@ void Hero::shoot(sf::RenderWindow &window)
   gun.shoot(this->getPosition(), sf::Mouse::getPosition(window));
 }
 
+std::ostream &operator<<(std::ostream &out, const Hero &hero)
+{
+  out << "HP " <<hero.HP << '\n'
+      << "speed " << hero.speed << '\n'
+      << "damage " << hero.damage << '\n'
+      << "positionX " << hero.objSprite.getPosition().x << '\n'
+      << "positionY " << hero.objSprite.getPosition().y << '\n'
+      << "capacityWeapon " << hero.gun.capacity << '\n';
+  return out;
+}
+
 
 
 

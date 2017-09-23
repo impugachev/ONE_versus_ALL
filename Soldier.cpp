@@ -43,3 +43,14 @@ void Soldier::shoot(sf::RenderWindow &window, Hero* player)
   sf::Vector2i *playerPos = new sf::Vector2i(player->objSprite.getPosition().x, player->objSprite.getPosition().y);
   gun.shoot(this->getPosition(), *playerPos);
 }
+
+std::ostream &operator<<(std::ostream &out, const Soldier &soldier)
+{
+  out << "HP " <<soldier.HP << '\n'
+      << "speed " << soldier.speed << '\n'
+      << "damage " << soldier.damage << '\n'
+      << "positionX " << soldier.objSprite.getPosition().x << '\n'
+      << "positionY " << soldier.objSprite.getPosition().y << '\n'
+      << "capacityWeapon " << soldier.gun.capacity << '\n';
+  return out;
+}

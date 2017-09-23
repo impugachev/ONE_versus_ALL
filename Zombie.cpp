@@ -72,6 +72,7 @@ sf::Vector2f Zombie::randPosition()
       position.y = -20 + rand() % 808;
       break;
     case 1:
+
       position.x = -20 + rand() % 1064;
       position.y = 788;
       break;
@@ -87,7 +88,15 @@ sf::Vector2f Zombie::randPosition()
   return position;
 }
 
-
+std::ostream &operator<<(std::ostream &out, const Zombie &zombie)
+{
+  out << "HP " <<zombie.HP << '\n'
+      << "speed " << zombie.speed << '\n'
+      << "damage " << zombie.damage << '\n'
+      << "positionX " << zombie.objSprite.getPosition().x << '\n'
+      << "positionY " << zombie.objSprite.getPosition().y << '\n';
+  return out;
+}
 
 
 

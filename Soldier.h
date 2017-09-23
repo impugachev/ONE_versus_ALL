@@ -18,6 +18,7 @@ public:
   bool getDamage(int dmg) override;
   void reloadWeapon();
   void shoot(sf::RenderWindow &window, Hero* player);
+  friend std::ostream& operator<<(std::ostream& out, const Soldier& soldier);
   //void runToHero(Hero*);
   //~Soldier();
 };

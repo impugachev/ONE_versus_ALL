@@ -16,6 +16,7 @@ public:
   bool getDamage(int dmg); // получение повреждений
   void reloadWeapon(/*Weapon& gun, sf::Clock& timer*/); // перезарадка оружия
   void shoot(sf::RenderWindow &window);
+  friend std::ostream& operator<<(std::ostream& out, const Hero& hero);
   //~Hero();
 };
 

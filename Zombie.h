@@ -20,6 +20,7 @@ public:
   /*virtual*/ void runToHero(Hero*);
   virtual void attack(Living *hero, sf::RenderWindow &);
   virtual bool getDamage(int dmg);
+  friend std::ostream& operator<<(std::ostream& out, const Zombie& zombie);
   //~Zombie();
 };
 

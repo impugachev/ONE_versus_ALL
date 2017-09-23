@@ -13,6 +13,8 @@ int main()
       if (event.type == sf::Event::Closed)
         game.window.close();
     }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::F5))
+      game.saveGame("/home/igor/CLionProjects/ONE_versus_ALL/save");
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::F9))
       game.loadGame("/home/igor/CLionProjects/ONE_versus_ALL/save");
     game.updateHero();

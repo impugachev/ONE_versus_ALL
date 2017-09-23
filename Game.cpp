@@ -109,7 +109,7 @@ void Game::loadGame(const char* fileName)
     size_t posSpace = buffer.find(' ')+1;
     saveHero[i] = std::stoi(buffer.substr(posSpace));
   }
-  player = Hero(saveHero[0],saveHero[1],saveHero[2],saveHero[3]);
+  player = *(new Hero(saveHero[0],saveHero[1],saveHero[2],saveHero[3]));
   player.objSprite.setPosition(saveHero[4], saveHero[5]);
   delete[](saveHero);
   getline(savefile,buffer);
@@ -168,4 +168,36 @@ void Game::loadGame(const char* fileName)
     }
     delete[](saveSoldier);
   }
+}
+
+void Game::saveGame(const char *fileName)
+{
+  std::fstream saveFile(fileName, std::ios::out);
+  saveFile << "#SAVE_GAME_ONE_VERSUS_ALL#\n"
+           << "Hero\n"
+           << "----------\n"
+           << player
+           << "##########\n";
+  std::vector<Zombie*> zombies = monsters;
+  std::vector<Soldier*> soldiers;
+  for (auto iter = zombies.begin(); iter != zombies.end(); ++iter)
+  {
+    auto s = dynamic_cast<Soldier *>(*iter);
+    if (s != NULL)
+    {
+      soldiers.push_back(s);
+      zombies.erase(iter--);
+    }
+  }
+  for (int i = 0; i < zombies.size(); ++i)
+    saveFile << "Zombie" << i << '\n'
+             << "----------\n"
+             << *zombies[i]
+             << ((i == zombies.size()-1) ? "##########\n" : "**********\n");
+  for (int i = 0; i < soldiers.size(); ++i)
+    saveFile << "Soldier" << i << '\n'
+             << "----------\n"
+             << *soldiers[i]
+             << ((i == soldiers.size()-1) ? "##########\n" : "**********\n");
+  saveFile << "#END_SAVE_FILE#";
 }
