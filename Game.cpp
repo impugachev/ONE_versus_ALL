@@ -1,15 +1,23 @@
 #include <fstream>
-//#include <map>
 #include "Game.h"
 #include "Hero.h"
 #include "Soldier.h"
 
 
-Game::Game()
-    :window(sf::VideoMode(1024, 768), "ONE versus ALL", sf::Style::Close), timerSpawnZombies(), timerAttackMonsters(),
+Game::Game(sf::RenderWindow& window)
+    :window(window), timerSpawnZombies(), timerAttackMonsters(),
      reload(), timerHeroShoot(), reloadSoldier(), monsters(), player()
 {
   window.setFramerateLimit(30);
+  background.loadFromFile("/home/igor/CLionProjects/ONE_versus_ALL/img/firstScreen.png");
+  auto temp = sf::Sprite(background, sf::IntRect(0, 0, 1024, 768));
+  back = temp;
+  while (!sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+  {
+    window.clear();
+    window.draw(back);
+    window.display();
+  }
   background.loadFromFile("/home/igor/CLionProjects/ONE_versus_ALL/img/background.jpg");
   background.setRepeated(true);
   back = *(new sf::Sprite(background, sf::IntRect(0, 0, 1024, 768)));

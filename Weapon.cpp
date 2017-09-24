@@ -40,15 +40,15 @@ void Weapon::flyBullets(std::vector<Zombie *> &monsters)
       }
     }
     // Где же дальше ошибка? В чем проблема????
-    if (bullet->objSprite.getPosition().x > 1024 || bullet->objSprite.getPosition().y > 768 ||
-        bullet->objSprite.getPosition().x < 0 || bullet->objSprite.getPosition().y < 0)
-    {
-      delete(bullet);
-      auto tempIter = bullets.begin();
-      bullets.erase(iter);// вопрос: вызывается ли для этого объекта delete или
+    //if (bullet->objSprite.getPosition().x > 1024 || bullet->objSprite.getPosition().y > 768 ||
+    //    bullet->objSprite.getPosition().x < 0 || bullet->objSprite.getPosition().y < 0)
+    //{
+    //  delete(bullet);
+    //  auto tempIter = bullets.begin();
+    //  bullets.erase(iter);// вопрос: вызывается ли для этого объекта delete или
       // я правильно сделал, поставив перед ним delete вручную?
-      tempIter == iter ? iter = bullets.begin() : iter--;
-    }
+    //  tempIter == iter ? iter = bullets.begin() : iter--;
+    //}
   }
 }
 
