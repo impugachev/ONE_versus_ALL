@@ -39,6 +39,7 @@ void Weapon::flyBullets(std::vector<Zombie *> &monsters)
         monsters.erase(iterToMonster);
       }
     }
+    // Где же дальше ошибка? В чем проблема????
     if (bullet->objSprite.getPosition().x > 1024 || bullet->objSprite.getPosition().y > 768 ||
         bullet->objSprite.getPosition().x < 0 || bullet->objSprite.getPosition().y < 0)
     {
@@ -59,6 +60,7 @@ void Weapon::flyBullets(Hero *hero) //доработать
     auto temp = bullet->go(hero);
     if (temp != nullptr && temp != whose)
       temp->getDamage(whose->damage);
+    // Где же дальше ошибка? В чем проблема????
     if (bullet->objSprite.getPosition().x > 1500 || bullet->objSprite.getPosition().y > 1000 ||
         bullet->objSprite.getPosition().x < -100 || bullet->objSprite.getPosition().y < -100)
     {

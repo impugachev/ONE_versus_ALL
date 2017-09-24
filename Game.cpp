@@ -13,6 +13,7 @@ Game::Game()
   background.loadFromFile("/home/igor/CLionProjects/ONE_versus_ALL/img/background.jpg");
   background.setRepeated(true);
   back = *(new sf::Sprite(background, sf::IntRect(0, 0, 1024, 768)));
+  //monsters.push_back(new Zombie());
 }
 
 void Game::updateHero()
