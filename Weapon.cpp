@@ -1,4 +1,3 @@
-
 #include "Weapon.h"
 #include "Bullet.h"
 #include "Living.h"
@@ -44,10 +43,10 @@ void Weapon::flyBullets(std::vector<Zombie *> &monsters)
         bullet->objSprite.getPosition().x < 0 || bullet->objSprite.getPosition().y < 0)
     {
       delete(bullet);
-	  auto tempIter = bullets.begin();
+      auto tempIter = bullets.begin();
       bullets.erase(iter);// вопрос: вызывается ли для этого объекта delete или
       // я правильно сделал, поставив перед ним delete вручную?
-	  tempIter == iter ? iter = bullets.begin() : iter--;
+      tempIter == iter ? iter = bullets.begin() : iter--;
     }
   }
 }
@@ -65,13 +64,9 @@ void Weapon::flyBullets(Hero *hero) //доработать
     {
       //--iter;
       delete(bullet);
-	  auto tempIter = bullets.begin();
+      auto tempIter = bullets.begin();
       bullets.erase(iter);
-	  tempIter == iter ? iter = bullets.begin() : iter--;
+      tempIter == iter ? iter = bullets.begin() : iter--;
     }
   }
 }
-
-
-
-
