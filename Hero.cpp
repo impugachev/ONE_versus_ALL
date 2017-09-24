@@ -22,7 +22,7 @@ Hero::Hero(int HP, int speed, int damage, int capacityWeapon,
 
 void Hero::attack(Living *enemy, sf::RenderWindow &)
 {
-  //пусто,ляляля
+  //пусто
 }
 
 void Hero::heroControl(sf::RenderWindow& window)
@@ -75,9 +75,3 @@ std::ostream &operator<<(std::ostream &out, const Hero &hero)
       << "capacityWeapon " << hero.gun.capacity << '\n';
   return out;
 }
-
-
-
-
-
-

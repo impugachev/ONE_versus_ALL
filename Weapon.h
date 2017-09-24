@@ -1,7 +1,3 @@
-//
-// Created by igor on 08.09.17.
-//
-
 #ifndef ONE_VERSUS_ALL_WEAPON_H
 #define ONE_VERSUS_ALL_WEAPON_H
 
@@ -18,18 +14,17 @@ class Weapon
   friend class Hero;
   friend class Soldier;
 private:
-  int ammo;
-  std::vector<Bullet*> bullets;
-  Living* whose;
+  int                  ammo;     // Количество оставшихся боеприпасов
+  std::vector<Bullet*> bullets;  // Пули, находящиеся в полете
+  Living*              whose;    // Указатель на хозяина оружия
 public:
-  int capacity;
+  int                  capacity; // Размер обоймы
   Weapon(int capacity, Living* whose);
-  void shoot(sf::Vector2f from, sf::Vector2i to);
-  bool isEmpty();
-  Weapon& operator-- (int);
-  void flyBullets(std::vector<Zombie*> &monsters);
-  void flyBullets(Hero *hero);
+  void shoot(sf::Vector2f from, sf::Vector2i to); // Обработка выстрела
+  bool isEmpty(); // Проверка на количество оставшихся боеприпасов
+  Weapon& operator-- (int); // Боеприпасы -1
+  void flyBullets(std::vector<Zombie*> &monsters); // Обработка полета всех пуль героя
+  void flyBullets(Hero *hero); // Перегрузка для солдата
 };
 
-
-#endif //ONE_VERSUS_ALL_WEAPON_H
+#endif

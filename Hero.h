@@ -7,17 +7,17 @@
 class Hero : public Living
 {
 public:
-  Weapon gun;
+  Weapon gun; // Оружие героя
   Hero();
   Hero(int HP, int speed, int damage, int capacityWeapon);
   Hero(int HP, int speed, int damage, int capacityWeapon, const std::string& textureFile, float centerX, float centerY);
-  void attack(Living *enemy, sf::RenderWindow &); // атакует врага enemy
-  void heroControl(sf::RenderWindow& window); // управление перемещением и взглядом персонажа
-  bool getDamage(int dmg); // получение повреждений
-  void reloadWeapon(/*Weapon& gun, sf::Clock& timer*/); // перезарадка оружия
-  void shoot(sf::RenderWindow &window);
-  friend std::ostream& operator<<(std::ostream& out, const Hero& hero);
-  //~Hero();
+  void attack(Living *enemy, sf::RenderWindow &) override; // Атакует врага, заменена shoot, возможно необходимо удалить
+  void heroControl(sf::RenderWindow& window); // Управление перемещением и взглядом персонажа
+  bool getDamage(int dmg) override; // Получение повреждений
+  void reloadWeapon(); // Перезарадка оружия
+  void shoot(sf::RenderWindow &window); // Выстрелить
+  friend std::ostream& operator<<(std::ostream& out, const Hero& hero); // Вывод данных о герое
+  ~Hero() = default;
 };
 
 #endif

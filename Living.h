@@ -3,23 +3,23 @@
 
 #include <SFML/Graphics.hpp>
 
-class Living
+class Living             // Общий класс для врагов и героя
 {
 protected:
-  int HP, speed;
-  sf::Texture texture;
+  int         HP,        // Очки здоровья
+              speed;     // Скорость
+  sf::Texture texture;   // Текстура объекта
 public:
-  int damage;
-  sf::Sprite objSprite;
+  int         damage;    // Наносимый урон
+  sf::Sprite  objSprite; // Спрайт объекта
   Living() = default;
   Living(int HP, int speed, int damage,
          const std::string& textureFile, float centerX, float centerY);
-  const sf::Vector2f & getPosition();
-  friend const sf::Vector2f & getPosition(Living* living);
-  virtual void attack(Living *, sf::RenderWindow &) = 0;
-  virtual bool getDamage(int dmg) = 0;
-  //virtual ~Living() = default;
+  const sf::Vector2f & getPosition(); // получить координаты объекта
+  friend const sf::Vector2f & getPosition(Living* living); // ||-||-||
+  virtual void attack(Living *, sf::RenderWindow &) = 0; // Атаковать
+  virtual bool getDamage(int dmg) = 0; // получить повреждения
+  virtual ~Living() = default; // виртуальный деструктор для правильного удаления производных объектов
 };
-
 
 #endif

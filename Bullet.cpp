@@ -35,4 +35,3 @@ Hero* Bullet::go(Hero *hero)
     return hero;
   return nullptr;
 }
-

@@ -4,7 +4,6 @@
 #include "Hero.h"
 #include "Soldier.h"
 
-
 Game::Game()
     :window(sf::VideoMode(1024, 768), "ONE versus ALL", sf::Style::Close), timerSpawnZombies(), timerAttackMonsters(),
      reload(), timerHeroShoot(), reloadSoldier(), monsters(), player()

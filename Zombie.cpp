@@ -1,6 +1,3 @@
-//
-// Created by igor on 08.09.17.
-//
 #include "Hero.h"
 #include "Zombie.h"
 #include <cmath>
@@ -97,8 +94,3 @@ std::ostream &operator<<(std::ostream &out, const Zombie &zombie)
       << "positionY " << zombie.objSprite.getPosition().y << '\n';
   return out;
 }
-
-
-
-
-

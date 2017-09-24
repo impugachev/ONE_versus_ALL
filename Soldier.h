@@ -7,21 +7,19 @@
 class Living;
 class Hero;
 
-class Soldier : public Zombie
+class Soldier : public Zombie // Класс солдата
 {
 public:
-  Weapon gun;
+  Weapon gun; // Оружие солдата
   Soldier();
   Soldier(int HP, int speed, int damage, int capacityWeapon);
   Soldier(int HP, int speed, int damage, const std::string& textureFile, int capacityWeapon,  float centerX, float centerY);
-  void attack(Living* hero, sf::RenderWindow&) override;
-  bool getDamage(int dmg) override;
-  void reloadWeapon();
-  void shoot(sf::RenderWindow &window, Hero* player);
-  friend std::ostream& operator<<(std::ostream& out, const Soldier& soldier);
-  //void runToHero(Hero*);
-  //~Soldier();
+  void attack(Living* hero, sf::RenderWindow&) override; // Атакует героя
+  bool getDamage(int dmg) override; // Получает повреждения
+  void reloadWeapon(); // Перезарядка оружия
+  void shoot(sf::RenderWindow &window, Hero* player); // Выстрелить
+  friend std::ostream& operator<<(std::ostream& out, const Soldier& soldier); // Вывод данных о солдате
+  ~Soldier() = default;
 };
 
-
-#endif //ONE_VERSUS_ALL_SOLDIER_H
+#endif

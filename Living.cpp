@@ -19,6 +19,3 @@ const sf::Vector2f &Living::getPosition()
 {
   return this->objSprite.getPosition();
 }
-
-
-
