@@ -31,7 +31,7 @@ void Weapon::flyBullets(std::vector<Zombie *> &monsters)
   {
     auto bullet = *iter;
     auto iterToMonster = bullet->go(monsters);
-    if (!monsters.empty())
+    if (!monsters.empty() && iterToMonster != monsters.end())
     {
       auto monster = *iterToMonster;
       if (iterToMonster != monsters.end() && monster != whose && monster->getDamage(whose->damage))
@@ -43,32 +43,35 @@ void Weapon::flyBullets(std::vector<Zombie *> &monsters)
     if (bullet->objSprite.getPosition().x > 1024 || bullet->objSprite.getPosition().y > 768 ||
         bullet->objSprite.getPosition().x < 0 || bullet->objSprite.getPosition().y < 0)
     {
-      --iter;
       delete(bullet);
+	  auto tempIter = bullets.begin();
       bullets.erase(iter);// вопрос: вызывается ли для этого объекта delete или
       // я правильно сделал, поставив перед ним delete вручную?
+	  tempIter == iter ? iter = bullets.begin() : iter--;
     }
   }
 }
 
 void Weapon::flyBullets(Hero *hero) //доработать
 {
-  Hero* temp;
   for (auto iter = bullets.begin(); iter != bullets.end(); ++iter)
   {
     auto bullet = *iter;
-    temp = bullet->go(hero);
+    auto temp = bullet->go(hero);
     if (temp != nullptr && temp != whose)
       temp->getDamage(whose->damage);
-    if (bullet->objSprite.getPosition().x > 1024 || bullet->objSprite.getPosition().y > 768 ||
-        bullet->objSprite.getPosition().x < 0 || bullet->objSprite.getPosition().y < 0)
+    if (bullet->objSprite.getPosition().x > 1500 || bullet->objSprite.getPosition().y > 1000 ||
+        bullet->objSprite.getPosition().x < -100 || bullet->objSprite.getPosition().y < -100)
     {
-      --iter;
+      //--iter;
       delete(bullet);
+	  auto tempIter = bullets.begin();
       bullets.erase(iter);
+	  tempIter == iter ? iter = bullets.begin() : iter--;
     }
   }
 }
+
 
 
 
