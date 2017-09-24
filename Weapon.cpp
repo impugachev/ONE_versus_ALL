@@ -61,14 +61,13 @@ void Weapon::flyBullets(Hero *hero) //доработать
     if (temp != nullptr && temp != whose)
       temp->getDamage(whose->damage);
     // Где же дальше ошибка? В чем проблема????
-    if (bullet->objSprite.getPosition().x > 1500 || bullet->objSprite.getPosition().y > 1000 ||
-        bullet->objSprite.getPosition().x < -100 || bullet->objSprite.getPosition().y < -100)
-    {
-      //--iter;
-      delete(bullet);
-      auto tempIter = bullets.begin();
-      bullets.erase(iter);
-      tempIter == iter ? iter = bullets.begin() : iter--;
-    }
+    //if (bullet->objSprite.getPosition().x > 1500 || bullet->objSprite.getPosition().y > 1000 ||
+    //    bullet->objSprite.getPosition().x < -100 || bullet->objSprite.getPosition().y < -100)
+    //{
+    //  delete(bullet);
+    //  auto tempIter = bullets.begin();
+    //  bullets.erase(iter);
+    //  tempIter == iter ? iter = bullets.begin() : iter--;
+    //}
   }
 }

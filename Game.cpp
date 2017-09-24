@@ -1,23 +1,15 @@
 #include <fstream>
+#include <iostream>
 #include "Game.h"
 #include "Hero.h"
 #include "Soldier.h"
 
 
-Game::Game(sf::RenderWindow& window)
-    :window(window), timerSpawnZombies(), timerAttackMonsters(),
+Game::Game()
+    :window(sf::VideoMode(1024, 768), "ONE versus ALL", sf::Style::Close), timerSpawnZombies(), timerAttackMonsters(),
      reload(), timerHeroShoot(), reloadSoldier(), monsters(), player()
 {
   window.setFramerateLimit(30);
-  background.loadFromFile("/home/igor/CLionProjects/ONE_versus_ALL/img/firstScreen.png");
-  auto temp = sf::Sprite(background, sf::IntRect(0, 0, 1024, 768));
-  back = temp;
-  while (!sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-  {
-    window.clear();
-    window.draw(back);
-    window.display();
-  }
   background.loadFromFile("/home/igor/CLionProjects/ONE_versus_ALL/img/background.jpg");
   background.setRepeated(true);
   back = *(new sf::Sprite(background, sf::IntRect(0, 0, 1024, 768)));
@@ -106,6 +98,7 @@ void Game::outToDisplay()
   window.draw(player.objSprite);
   std::for_each(monsters.begin(), monsters.end(), [&](Zombie* z){window.draw(z->objSprite);});
   window.display();
+  std::cerr<<player.objSprite.getPosition().x << ' ' << player.objSprite.getPosition().y<<'\n';
 }
 
 void Game::loadGame(const char* fileName)
@@ -126,8 +119,8 @@ void Game::loadGame(const char* fileName)
     size_t posSpace = buffer.find(' ')+1;
     saveHero[i] = std::stoi(buffer.substr(posSpace));
   }
-  player = *(new Hero(saveHero[0],saveHero[1],saveHero[2],saveHero[3]));
-  player.objSprite.setPosition(saveHero[4], saveHero[5]);
+  player = *(new Hero(saveHero[0],saveHero[1],saveHero[2],saveHero[5]));
+  player.objSprite.setPosition(saveHero[3], saveHero[4]);
   delete[](saveHero);
   getline(savefile,buffer);
   getline(savefile,buffer);
@@ -179,8 +172,8 @@ void Game::loadGame(const char* fileName)
         saveSoldier[i] = std::stoi(buffer.substr(posSpace));
       }
       getline(savefile, buffer);
-      monsters.emplace_back(new Soldier(saveSoldier[0],saveSoldier[1],saveSoldier[2],saveSoldier[3]));
-      monsters[numberM]->objSprite.setPosition(saveSoldier[4],saveSoldier[5]);
+      monsters.emplace_back(new Soldier(saveSoldier[0],saveSoldier[1],saveSoldier[2],saveSoldier[5]));
+      monsters[numberM]->objSprite.setPosition(saveSoldier[3],saveSoldier[4]);
       ++numberM;
     }
     delete[](saveSoldier);

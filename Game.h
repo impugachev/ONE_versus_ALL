@@ -16,7 +16,7 @@ private:
   sf::Clock timerSpawnZombies, timerSpawnSoldiers, timerAttackMonsters, reload, timerHeroShoot, reloadSoldier;
 public:
   sf::RenderWindow window;
-  Game(sf::RenderWindow& window);
+  Game();
   void updateHero();
   void updateEnemies();
   void updateBullets();

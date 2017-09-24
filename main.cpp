@@ -4,9 +4,27 @@
 
 int main()
 {
-  sf::RenderWindow window(sf::VideoMode(1024, 768), "ONE versus ALL", sf::Style::Close);
   Game game;
-  while
+
+  auto screenTexture = new sf::Texture();
+  screenTexture->loadFromFile("/home/igor/CLionProjects/ONE_versus_ALL/img/firstScreen.png");
+  auto screen = new sf::Sprite(*screenTexture);
+  sf::Event *event = new sf::Event();
+  while (!sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+  {
+    while (game.window.pollEvent(*event))
+    {
+      if (event->type == sf::Event::Closed)
+        game.window.close();
+    }
+    game.window.clear();
+    game.window.draw(*screen);
+    game.window.display();
+  }
+  delete (screenTexture);
+  delete (screen);
+  delete (event);
+
   while (game.window.isOpen())
   {
     sf::Event event;

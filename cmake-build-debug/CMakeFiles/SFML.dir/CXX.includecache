@@ -21,6 +21,8 @@ SFML/Graphics.hpp
 /home/igor/CLionProjects/ONE_versus_ALL/Game.cpp
 fstream
 -
+iostream
+-
 Game.h
 /home/igor/CLionProjects/ONE_versus_ALL/Game.h
 Hero.h
