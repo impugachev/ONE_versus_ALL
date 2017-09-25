@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-#include <iostream>
+//#include <iostream>
 #include "Game.h"
 
 int main()
@@ -25,6 +25,8 @@ int main()
   delete (screen);
   delete (event);
 // Конец блока
+  Game *save = &game;
+  void (Game::*sl) (const char *fileName);
   while (game.window.isOpen())
   {
     // Обработка клавиши закрытия окна:
@@ -36,9 +38,15 @@ int main()
     }
     //****************
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::F5))
-      game.saveGame("/home/igor/CLionProjects/ONE_versus_ALL/save");
+    {
+      sl = &Game::saveGame;
+      (game.*sl)("/home/igor/CLionProjects/ONE_versus_ALL/save");
+    }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::F9))
-      game.loadGame("/home/igor/CLionProjects/ONE_versus_ALL/save");
+    {
+      sl = &Game::loadGame;
+      (save->*sl)("/home/igor/CLionProjects/ONE_versus_ALL/save");
+    }
     game.updateHero();
     game.updateEnemies();
     game.updateBullets();

@@ -4,8 +4,8 @@ Hero
 HP 50
 speed 7
 damage 5
-positionX 878
-positionY 102
+positionX 577
+positionY 158
 capacityWeapon 10
 ##########
 Zombie0
@@ -13,48 +13,16 @@ Zombie0
 HP 10
 speed 3
 damage 5
-positionX 762
-positionY 395
-**********
-Zombie1
-----------
-HP 10
-speed 3
-damage 5
-positionX 763
-positionY 397
-**********
-Zombie2
-----------
-HP 10
-speed 3
-damage 5
-positionX 760
-positionY 394
-**********
-Zombie3
-----------
-HP 10
-speed 3
-damage 5
-positionX 757
-positionY 396
-**********
-Zombie4
-----------
-HP 10
-speed 3
-damage 5
-positionX 803
-positionY 425
+positionX 575
+positionY 266
 ##########
 Soldier0
 ----------
 HP 20
 speed 1
 damage 100
-positionX 540
-positionY 374
+positionX 362
+positionY 641
 capacityWeapon 10
 ##########
 #END_SAVE_FILE#

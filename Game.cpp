@@ -97,7 +97,7 @@ void Game::outToDisplay()
   window.draw(player.objSprite);
   std::for_each(monsters.begin(), monsters.end(), [&](Zombie* z){window.draw(z->objSprite);});
   window.display();
-  std::cerr<<player.objSprite.getPosition().x << ' ' << player.objSprite.getPosition().y<<'\n';
+  //std::cerr<<player.objSprite.getPosition().x << ' ' << player.objSprite.getPosition().y<<'\n';
 }
 
 void Game::loadGame(const char* fileName)
