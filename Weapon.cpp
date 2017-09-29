@@ -18,9 +18,9 @@ Weapon& Weapon::operator--(int)
   return *this;
 }
 
-void Weapon::shoot(sf::Vector2f from, sf::Vector2i to)
+void Weapon::shoot()
 {
-  bullets.push_back(new Bullet(from,to));
+  bullets.push_back(new Bullet(whose->getPosition(), whose));
 }
 
 void Weapon::flyBullets(std::vector<Zombie *> &monsters)
@@ -29,7 +29,7 @@ void Weapon::flyBullets(std::vector<Zombie *> &monsters)
   for (auto iter = bullets.begin(); iter != bullets.end(); ++iter)
   {
     auto bullet = *iter;
-    auto iterToMonster = bullet->go(monsters);
+    auto iterToMonster = bullet->go(monsters, whose);
     if (!monsters.empty() && iterToMonster != monsters.end())
     {
       auto monster = *iterToMonster;

@@ -62,7 +62,7 @@ void Hero::shoot(sf::RenderWindow &window)
   if (this->gun.isEmpty())
     return;
   gun--;
-  gun.shoot(this->getPosition(), sf::Mouse::getPosition(window));
+  gun.shoot();
 }
 
 std::ostream &operator<<(std::ostream &out, const Hero &hero)

@@ -20,7 +20,7 @@ private:
 public:
   int                  capacity; // Размер обоймы
   Weapon(int capacity, Living* whose);
-  void shoot(sf::Vector2f from, sf::Vector2i to); // Обработка выстрела
+  void shoot(); // Обработка выстрела
   bool isEmpty(); // Проверка на количество оставшихся боеприпасов
   Weapon& operator-- (int); // Боеприпасы -1
   void flyBullets(std::vector<Zombie*> &monsters); // Обработка полета всех пуль героя

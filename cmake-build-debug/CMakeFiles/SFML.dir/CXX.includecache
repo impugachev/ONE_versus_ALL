@@ -13,10 +13,14 @@ Zombie.h
 /home/igor/CLionProjects/ONE_versus_ALL/Zombie.h
 Hero.h
 /home/igor/CLionProjects/ONE_versus_ALL/Hero.h
+cmath
+-
 
 /home/igor/CLionProjects/ONE_versus_ALL/Bullet.h
 SFML/Graphics.hpp
 -
+Living.h
+/home/igor/CLionProjects/ONE_versus_ALL/Living.h
 
 /home/igor/CLionProjects/ONE_versus_ALL/Game.cpp
 fstream

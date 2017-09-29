@@ -2,6 +2,7 @@
 #define ONE_VERSUS_ALL_BULLET_H
 
 #include <SFML/Graphics.hpp>
+#include "Living.h"
 
 class Zombie;
 class Hero;
@@ -10,13 +11,13 @@ class Bullet // Класс "Пуля"
 {
 private:
   int          speed;     // Скорость пули
+  double       radians;   // Направление в радианах
   sf::Texture  texture;   // Текстура
   sf::Vector2f from;      // Откуда выпущена
-  sf::Vector2i to;        // Куда выпущена
 public:
   sf::Sprite   objSprite; // Спрайт
-  Bullet(sf::Vector2f from, sf::Vector2i to);
-  std::vector<Zombie *>::iterator go(std::vector<Zombie *> &monsters); // Обработка полета пули и попадания
+  Bullet(sf::Vector2f from, Living *whose);
+  std::vector<Zombie *>::iterator go(std::vector<Zombie *> &monsters, Living *hero); // Обработка полета пули и попадания
   Hero* go(Hero* hero); // Перегрузка для монстров
   ~Bullet() = default;
 };

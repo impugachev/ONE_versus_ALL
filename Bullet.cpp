@@ -1,22 +1,22 @@
 #include "Bullet.h"
 #include "Zombie.h"
 #include "Hero.h"
+#include <cmath>
 
-Bullet::Bullet(sf::Vector2f from, sf::Vector2i to)
-    : from(from), to(to), speed(10)
+Bullet::Bullet(sf::Vector2f from, Living *whose)
+    : from(from), speed(12)
 {
   texture.loadFromFile("/home/igor/CLionProjects/ONE_versus_ALL/img/bullet.png");
   texture.setSmooth(true);
   objSprite.setTexture(texture);
   objSprite.setOrigin(5, 5);
   objSprite.move(from);
+  radians = (whose->objSprite.getRotation() - 90) * 3.14159265/180;
 }
 
-std::vector<Zombie *>::iterator Bullet::go(std::vector<Zombie *> &monsters)
+std::vector<Zombie *>::iterator Bullet::go(std::vector<Zombie *> &monsters, Living *hero)
 {
-  float y = (from.y*to.x-to.y*from.x-(from.y-to.y)*objSprite.getPosition().x)/(to.x-from.x); // Может с формулой напортачил?
-  objSprite.setPosition(objSprite.getPosition().x+((from.x-to.x) < 0 ? speed: -speed),y);
-
+  objSprite.move(speed*cos(radians), speed*sin(radians));
   for (auto iter = monsters.begin(); iter != monsters.end(); ++iter)
   {
     auto monster = *iter;
@@ -29,8 +29,7 @@ std::vector<Zombie *>::iterator Bullet::go(std::vector<Zombie *> &monsters)
 
 Hero* Bullet::go(Hero *hero)
 {
-  float y = (from.x*to.y-to.x*from.y-(to.y-from.y)*objSprite.getPosition().x)/(from.x-to.x);
-  objSprite.setPosition(objSprite.getPosition().x+((from.x-to.x) < 0 ? speed: -speed),y);
+  objSprite.move(speed*cos(radians), speed*sin(radians));
   if ((objSprite.getPosition().x-hero->getPosition().x)*(objSprite.getPosition().x-hero->getPosition().x)+
       (objSprite.getPosition().y-hero->getPosition().y)*(objSprite.getPosition().y-hero->getPosition().y) <= 400)
     return hero;

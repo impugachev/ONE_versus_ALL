@@ -38,7 +38,7 @@ void Soldier::shoot(sf::RenderWindow &window, Hero* player)
     return;
   gun--;
   sf::Vector2i *playerPos = new sf::Vector2i(player->objSprite.getPosition().x, player->objSprite.getPosition().y);
-  gun.shoot(this->getPosition(), *playerPos);
+  gun.shoot();
 }
 
 std::ostream &operator<<(std::ostream &out, const Soldier &soldier)
