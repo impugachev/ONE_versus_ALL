@@ -2,7 +2,7 @@
 #include <cmath>
 
 Hero::Hero()
-    : Living(50, 7, 5, "/home/igor/CLionProjects/ONE_versus_ALL/img/hero.png", 30, 70), gun(10, this)
+    : Living(5, 7, 5, "/home/igor/CLionProjects/ONE_versus_ALL/img/hero.png", 30, 70), gun(10, this)
 {
   objSprite.move(472, 319);
 }
@@ -43,12 +43,9 @@ void Hero::heroControl(sf::RenderWindow& window)
 
 bool Hero::getDamage(int dmg)
 {
-  if (dmg >= HP)
-  {
-    //game over
-    return true;
-  }
   HP -= dmg;
+  if (HP <= 0)
+    return true;
   return false;
 }
 

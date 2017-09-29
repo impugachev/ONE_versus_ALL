@@ -13,7 +13,6 @@ private:
   int          speed;     // Скорость пули
   double       radians;   // Направление в радианах
   sf::Texture  texture;   // Текстура
-  sf::Vector2f from;      // Откуда выпущена
 public:
   sf::Sprite   objSprite; // Спрайт
   Bullet(sf::Vector2f from, Living *whose);

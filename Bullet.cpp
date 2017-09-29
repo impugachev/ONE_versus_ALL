@@ -4,7 +4,7 @@
 #include <cmath>
 
 Bullet::Bullet(sf::Vector2f from, Living *whose)
-    : from(from), speed(12)
+    : speed(12)
 {
   texture.loadFromFile("/home/igor/CLionProjects/ONE_versus_ALL/img/bullet.png");
   texture.setSmooth(true);

@@ -18,7 +18,7 @@ public:
   virtual void attack(Living *hero, sf::RenderWindow &) override; // Атаковать
   virtual bool getDamage(int dmg) override; // Получить повреждения
   friend std::ostream& operator<<(std::ostream& out, const Zombie& zombie); // Вывод данных о зомби
-  virtual ~Zombie() = default; // Виртуальны деструктор для правильного удаления производных объектов
+  virtual ~Zombie() = default; // Виртуальный деструктор для правильного удаления производных объектов
 };
 
 #endif

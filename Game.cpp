@@ -11,8 +11,7 @@ Game::Game()
   window.setFramerateLimit(30);
   background.loadFromFile("/home/igor/CLionProjects/ONE_versus_ALL/img/background.jpg");
   background.setRepeated(true);
-  back = *(new sf::Sprite(background, sf::IntRect(0, 0, 1024, 768)));
-  //monsters.push_back(new Zombie());
+  back = sf::Sprite(background, sf::IntRect(0, 0, 1024, 768));
 }
 
 void Game::updateHero()
@@ -97,7 +96,8 @@ void Game::outToDisplay()
   window.draw(player.objSprite);
   std::for_each(monsters.begin(), monsters.end(), [&](Zombie* z){window.draw(z->objSprite);});
   window.display();
-  //std::cerr<<player.objSprite.getPosition().x << ' ' << player.objSprite.getPosition().y<<'\n';
+  if (player.getDamage(0))
+    window.close();
 }
 
 void Game::loadGame(const char* fileName)
@@ -120,7 +120,7 @@ void Game::loadGame(const char* fileName)
   }
   player = *(new Hero(saveHero[0],saveHero[1],saveHero[2],saveHero[5]));
   player.objSprite.setPosition(saveHero[3], saveHero[4]);
-  delete[](saveHero);
+  delete[] saveHero;
   getline(savefile,buffer);
   getline(savefile,buffer);
   if (buffer == "#END_SAVE_FILE#")
@@ -128,7 +128,6 @@ void Game::loadGame(const char* fileName)
   int numberM = 0;
   if(buffer.substr(0, 6) == "Zombie")
   {
-    //std::vector<int*> savesZombie;
     int *saveZombie = new int[5];
     getline(savefile,buffer);
     while (buffer != "##########")
@@ -144,13 +143,12 @@ void Game::loadGame(const char* fileName)
         size_t posSpace = buffer.find(' ') + 1;
         saveZombie[i] = std::stoi(buffer.substr(posSpace));
       }
-      //savesZombie.push_back(saveZombie);
       getline(savefile, buffer);
       monsters.emplace_back(new Zombie(saveZombie[0],saveZombie[1],saveZombie[2]));
       monsters[numberM]->objSprite.setPosition(saveZombie[3],saveZombie[4]);
       ++numberM;
     }
-    delete[](saveZombie);
+    delete[] saveZombie ;
   }
   getline(savefile, buffer);
   if(buffer.substr(0, 7) == "Soldier")
@@ -209,4 +207,10 @@ void Game::saveGame(const char *fileName)
              << *soldiers[i]
              << ((i == soldiers.size()-1) ? "##########\n" : "**********\n");
   saveFile << "#END_SAVE_FILE#";
+}
+
+Game::~Game()
+{
+  for (auto &monster:monsters)
+    delete monster;
 }

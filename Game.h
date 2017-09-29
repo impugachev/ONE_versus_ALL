@@ -28,6 +28,7 @@ public:
   void outToDisplay();                      // Вывести на экран
   void loadGame(const char* fileName);      // Загрузить игру
   void saveGame(const char* fileName);      // Сохранить игру
+  ~Game();
 };
 
 #endif
