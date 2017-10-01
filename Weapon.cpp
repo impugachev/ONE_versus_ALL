@@ -25,7 +25,6 @@ void Weapon::shoot()
 
 void Weapon::flyBullets(std::vector<Zombie *> &monsters)
 {
-  //if (!monsters.empty())
   for (auto iter = bullets.begin(); iter != bullets.end(); ++iter)
   {
     auto bullet = *iter;
@@ -39,16 +38,13 @@ void Weapon::flyBullets(std::vector<Zombie *> &monsters)
         monsters.erase(iterToMonster);
       }
     }
-    // Где же дальше ошибка? В чем проблема????
-    //if (bullet->objSprite.getPosition().x > 1024 || bullet->objSprite.getPosition().y > 768 ||
-    //    bullet->objSprite.getPosition().x < 0 || bullet->objSprite.getPosition().y < 0)
-    //{
-      //delete bullet;
-    //  auto tempIter = bullets.begin();
-    //  bullets.erase(iter);// вопрос: вызывается ли для этого объекта delete или
-      // я правильно сделал, поставив перед ним delete вручную?
-    //  tempIter == iter ? iter = bullets.begin() : iter--;
-    //}
+    if (bullet->objSprite.getPosition().x > 1024 || bullet->objSprite.getPosition().y > 768 ||
+        bullet->objSprite.getPosition().x < 0 || bullet->objSprite.getPosition().y < 0)
+    {
+      delete bullet;
+      bullets.erase(iter);
+      break;
+    }
   }
 }
 
@@ -60,14 +56,12 @@ void Weapon::flyBullets(Hero *hero)
     auto temp = bullet->go(hero);
     if (temp != nullptr && temp != whose)
       temp->getDamage(whose->damage);
-    // Где же дальше ошибка? В чем проблема????
-    //if (bullet->objSprite.getPosition().x > 1500 || bullet->objSprite.getPosition().y > 1000 ||
-    //    bullet->objSprite.getPosition().x < -100 || bullet->objSprite.getPosition().y < -100)
-    //{
-    //  delete(bullet);
-    //  auto tempIter = bullets.begin();
-    //  bullets.erase(iter);
-    //  tempIter == iter ? iter = bullets.begin() : iter--;
-    //}
+    if (bullet->objSprite.getPosition().x > 1500 || bullet->objSprite.getPosition().y > 1000 ||
+        bullet->objSprite.getPosition().x < -100 || bullet->objSprite.getPosition().y < -100)
+    {
+      delete bullet;
+      bullets.erase(iter);
+      break;
+    }
   }
 }
