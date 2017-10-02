@@ -65,3 +65,9 @@ void Weapon::flyBullets(Hero *hero)
     }
   }
 }
+
+Weapon::~Weapon()
+{
+  for (auto &bullet:bullets)
+    delete bullet;
+}

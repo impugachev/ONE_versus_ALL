@@ -25,6 +25,7 @@ public:
   Weapon& operator-- (int); // Боеприпасы -1
   void flyBullets(std::vector<Zombie*> &monsters); // Обработка полета всех пуль героя
   void flyBullets(Hero *hero); // Перегрузка для солдата
+  ~Weapon();
 };
 
 #endif
