@@ -1,11 +1,11 @@
 #SAVE_GAME_ONE_VERSUS_ALL#
 Hero
 ----------
-HP 50
+HP 5
 speed 7
 damage 5
-positionX 577
-positionY 158
+positionX 346
+positionY 410
 capacityWeapon 10
 ##########
 Zombie0
@@ -13,16 +13,7 @@ Zombie0
 HP 10
 speed 3
 damage 5
-positionX 575
-positionY 266
-##########
-Soldier0
-----------
-HP 20
-speed 1
-damage 100
-positionX 362
-positionY 641
-capacityWeapon 10
+positionX 861
+positionY 331
 ##########
 #END_SAVE_FILE#

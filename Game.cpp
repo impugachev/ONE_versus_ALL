@@ -104,77 +104,78 @@ void Game::loadGame(const char* fileName)
 {
   monsters.clear();
   monsters.shrink_to_fit();
-  std::fstream savefile(fileName, std::ios::in);
+  std::fstream saveFile(fileName, std::ios::in);
   std::string buffer;
-  getline(savefile,buffer);
+  getline(saveFile,buffer);
   buffer == "#SAVE_GAME_ONE_VERSUS_ALL#" ? 0:throw 1;
-  getline(savefile,buffer);
+  getline(saveFile,buffer);
   buffer == "Hero" ? 0:throw 1;
-  getline(savefile,buffer);
+  getline(saveFile,buffer);
   int *saveHero = new int[6];
   for (int i = 0; i < 6; ++i)
   {
-    getline(savefile,buffer);
+    getline(saveFile,buffer);
     size_t posSpace = buffer.find(' ')+1;
     saveHero[i] = std::stoi(buffer.substr(posSpace));
   }
   player = *(new Hero(saveHero[0],saveHero[1],saveHero[2],saveHero[5]));
   player.objSprite.setPosition(saveHero[3], saveHero[4]);
   delete[] saveHero;
-  getline(savefile,buffer);
-  getline(savefile,buffer);
+  getline(saveFile,buffer);
+  getline(saveFile,buffer);
   if (buffer == "#END_SAVE_FILE#")
     return;
   int numberM = 0;
   if(buffer.substr(0, 6) == "Zombie")
   {
     int *saveZombie = new int[5];
-    getline(savefile,buffer);
+    getline(saveFile,buffer);
     while (buffer != "##########")
     {
       if (buffer == "**********")
       {
-        getline(savefile,buffer);
-        getline(savefile,buffer);
+        getline(saveFile,buffer);
+        getline(saveFile,buffer);
       }
       for (int i = 0; i < 5; ++i)
       {
-        getline(savefile, buffer);
+        getline(saveFile, buffer);
         size_t posSpace = buffer.find(' ') + 1;
         saveZombie[i] = std::stoi(buffer.substr(posSpace));
       }
-      getline(savefile, buffer);
+      getline(saveFile, buffer);
       monsters.emplace_back(new Zombie(saveZombie[0],saveZombie[1],saveZombie[2]));
       monsters[numberM]->objSprite.setPosition(saveZombie[3],saveZombie[4]);
       ++numberM;
     }
     delete[] saveZombie ;
   }
-  getline(savefile, buffer);
+  getline(saveFile, buffer);
   if(buffer.substr(0, 7) == "Soldier")
   {
     int *saveSoldier = new int[6];
-    getline(savefile,buffer);
+    getline(saveFile,buffer);
     while (buffer != "##########")
     {
       if (buffer == "**********")
       {
-        getline(savefile,buffer);
-        getline(savefile,buffer);
+        getline(saveFile,buffer);
+        getline(saveFile,buffer);
       }
       for (int i = 0; i < 6; ++i)
       {
-        getline(savefile, buffer);
+        getline(saveFile, buffer);
         size_t posSpace = buffer.find(' ') + 1;
         saveSoldier[i] = std::stoi(buffer.substr(posSpace));
       }
-      getline(savefile, buffer);
+      getline(saveFile, buffer);
       monsters.emplace_back(new Soldier(saveSoldier[0],saveSoldier[1],saveSoldier[2],saveSoldier[5]));
       monsters[numberM]->objSprite.setPosition(saveSoldier[3],saveSoldier[4]);
       ++numberM;
     }
     delete[](saveSoldier);
   }
+  saveFile.close();
 }
 
 void Game::saveGame(const char *fileName)
@@ -207,6 +208,7 @@ void Game::saveGame(const char *fileName)
              << *soldiers[i]
              << ((i == soldiers.size()-1) ? "##########\n" : "**********\n");
   saveFile << "#END_SAVE_FILE#";
+  saveFile.close();
 }
 
 Game::~Game()
