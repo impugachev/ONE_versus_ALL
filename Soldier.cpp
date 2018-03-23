@@ -2,10 +2,10 @@
 #include "Hero.h"
 
 Soldier::Soldier()
-    :Zombie(20, 1, 10, "/home/igor/CLionProjects/ONE_versus_ALL/img/soldier.png",20, 70),gun(10, this) {}
+    :Zombie(20, 1, 10, "../img/soldier.png",20, 70),gun(10, this) {}
 
 Soldier::Soldier(int HP, int speed, int damage, int capacityWeapon)
-    :Zombie(HP, speed, damage, "/home/igor/CLionProjects/ONE_versus_ALL/img/soldier.png",20, 70), gun(capacityWeapon, this) {}
+    :Zombie(HP, speed, damage, "../img/soldier.png",20, 70), gun(capacityWeapon, this) {}
 
 Soldier::Soldier(int HP, int speed, int damage, const std::string &textureFile, int capacityWeapon, float centerX, float centerY)
     : Zombie(HP, speed, damage, textureFile, centerX, centerY), gun(capacityWeapon, this){}
@@ -34,7 +34,7 @@ void Soldier::shoot(sf::RenderWindow &window, Hero* player)
   if (this->gun.isEmpty())
     return;
   gun--;
-  sf::Vector2i *playerPos = new sf::Vector2i(player->objSprite.getPosition().x, player->objSprite.getPosition().y);
+  auto *playerPos = new sf::Vector2i(player->objSprite.getPosition().x, player->objSprite.getPosition().y);
   gun.shoot();
 }
 

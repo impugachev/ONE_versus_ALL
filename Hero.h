@@ -4,6 +4,8 @@
 #include "Living.h"
 #include "Weapon.h"
 
+struct GameOver{};
+
 class Hero : public Living
 {
 public:
@@ -11,7 +13,7 @@ public:
   Hero();
   Hero(int HP, int speed, int damage, int capacityWeapon);
   Hero(int HP, int speed, int damage, int capacityWeapon, const std::string& textureFile, float centerX, float centerY);
-  void attack(Living *enemy, sf::RenderWindow &) override; // Атакует врага, заменена shoot, возможно необходимо удалить
+  void attack(Living *enemy, sf::RenderWindow &) override {}; // Атакует врага, заменена shoot, возможно необходимо удалить
   void heroControl(sf::RenderWindow& window); // Управление перемещением и взглядом персонажа
   bool getDamage(int dmg) override; // Получение повреждений
   void reloadWeapon(); // Перезарадка оружия

@@ -2,13 +2,13 @@
 #include <cmath>
 
 Hero::Hero()
-    : Living(50, 7, 5, "/home/igor/CLionProjects/ONE_versus_ALL/img/hero.png", 30, 70), gun(10, this)
+    : Living(50, 7, 5, "../img/hero.png", 30, 70), gun(10, this)
 {
   objSprite.move(472, 319);
 }
 
 Hero::Hero(int HP, int speed, int damage, int capacityWeapon)
-    :Living(HP, speed, damage, "/home/igor/CLionProjects/ONE_versus_ALL/img/hero.png", 30, 70), gun(capacityWeapon, this)
+    :Living(HP, speed, damage, "../img/hero.png", 30, 70), gun(capacityWeapon, this)
 {
   objSprite.move(472, 319);
 }
@@ -18,11 +18,6 @@ Hero::Hero(int HP, int speed, int damage, int capacityWeapon,
     : Living(HP, speed, damage, textureFile, centerX, centerY), gun(capacityWeapon, this)
 {
   objSprite.move(472, 319);
-}
-
-void Hero::attack(Living *enemy, sf::RenderWindow &)
-{
-  //пусто
 }
 
 void Hero::heroControl(sf::RenderWindow& window)
@@ -45,7 +40,7 @@ bool Hero::getDamage(int dmg)
 {
   HP -= dmg;
   if (HP <= 0)
-    return true;
+    throw GameOver();
   return false;
 }
 
@@ -64,7 +59,7 @@ void Hero::shoot(sf::RenderWindow &window)
 
 std::ostream &operator<<(std::ostream &out, const Hero &hero)
 {
-  out << "HP " <<hero.HP << '\n'
+  out << "HP " << hero.HP << '\n'
       << "speed " << hero.speed << '\n'
       << "damage " << hero.damage << '\n'
       << "positionX " << hero.objSprite.getPosition().x << '\n'

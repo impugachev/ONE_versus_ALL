@@ -9,7 +9,7 @@ Game::Game()
      reload(), timerHeroShoot(), reloadSoldier(), monsters(), player()
 {
   window.setFramerateLimit(30);
-  background.loadFromFile("/home/igor/CLionProjects/ONE_versus_ALL/img/background.jpg");
+  background.loadFromFile("../img/background.jpg");
   background.setRepeated(true);
   back = sf::Sprite(background, sf::IntRect(0, 0, 1024, 768));
 }
@@ -59,7 +59,7 @@ void Game::updateBullets()
   std::for_each(monsters.begin(), monsters.end(),
                 [&](Zombie* z) {
                   auto s = dynamic_cast<Soldier *>(z);
-                  if (s != NULL)
+                  if (s != nullptr)
                   {
                     s->gun.flyBullets(&player);
                     if (s->gun.isEmpty())
@@ -84,7 +84,7 @@ void Game::outToDisplay()
   std::for_each(monsters.begin(), monsters.end(),
                 [&](Zombie* z) {
                   auto s = dynamic_cast<Soldier *>(z);
-                  if (s != NULL)
+                  if (s != nullptr)
                   {
                     std::for_each(s->gun.bullets.begin(), s->gun.bullets.end(),
                                   [&](Bullet* b)
@@ -128,7 +128,7 @@ void Game::loadGame(const char* fileName)
   int numberM = 0;
   if(buffer.substr(0, 6) == "Zombie")
   {
-    int *saveZombie = new int[5];
+    auto *saveZombie = new int[5];
     getline(saveFile,buffer);
     while (buffer != "##########")
     {
@@ -153,7 +153,7 @@ void Game::loadGame(const char* fileName)
   getline(saveFile, buffer);
   if(buffer.substr(0, 7) == "Soldier")
   {
-    int *saveSoldier = new int[6];
+    auto *saveSoldier = new int[6];
     getline(saveFile,buffer);
     while (buffer != "##########")
     {
@@ -191,7 +191,7 @@ void Game::saveGame(const char *fileName)
   for (auto iter = zombies.begin(); iter != zombies.end(); ++iter)
   {
     auto s = dynamic_cast<Soldier *>(*iter);
-    if (s != NULL)
+    if (s != nullptr)
     {
       soldiers.push_back(s);
       zombies.erase(iter--);
@@ -215,4 +215,23 @@ Game::~Game()
 {
   for (auto &monster:monsters)
     delete monster;
+}
+
+void Game::hello()
+{
+  auto screenTexture = new sf::Texture();
+  screenTexture->loadFromFile("../img/firstScreen.png");
+  auto screen = new sf::Sprite(*screenTexture);
+  sf::Event *event = new sf::Event();
+  while (!sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+  {
+    while (this->window.pollEvent(*event))
+    {
+      if (event->type == sf::Event::Closed)
+        this->window.close();
+    }
+    this->window.clear();
+    this->window.draw(*screen);
+    this->window.display();
+  }
 }

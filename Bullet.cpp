@@ -6,12 +6,12 @@
 Bullet::Bullet(sf::Vector2f from, Living *whose)
     : speed(12)
 {
-  texture.loadFromFile("/home/igor/CLionProjects/ONE_versus_ALL/img/bullet.png");
+  texture.loadFromFile("../img/bullet.png");
   texture.setSmooth(true);
   objSprite.setTexture(texture);
   objSprite.setOrigin(5, 5);
   objSprite.move(from);
-  radians = (whose->objSprite.getRotation() - 90) * 3.14159265/180;
+  radians = (whose->objSprite.getRotation() - 90) * M_PI/180;
 }
 
 std::vector<Zombie *>::iterator Bullet::go(std::vector<Zombie *> &monsters, Living *hero)

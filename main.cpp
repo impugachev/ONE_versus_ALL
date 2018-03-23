@@ -4,28 +4,7 @@
 int main()
 {
   Game game; // Создание игры
-// Блок вывода данных по управлению игрой
-  auto screenTexture = new sf::Texture();
-  screenTexture->loadFromFile("/home/igor/CLionProjects/ONE_versus_ALL/img/firstScreen.png");
-  auto screen = new sf::Sprite(*screenTexture);
-  sf::Event *event = new sf::Event();
-  while (!sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-  {
-    while (game.window.pollEvent(*event))
-    {
-      if (event->type == sf::Event::Closed)
-        game.window.close();
-    }
-    game.window.clear();
-    game.window.draw(*screen);
-    game.window.display();
-  }
-  delete (screenTexture);
-  delete (screen);
-  delete (event);
-// Конец блока
-  Game *save = &game;
-  void (Game::*sl) (const char *fileName);
+  game.hello();
   while (game.window.isOpen())
   {
     // Обработка клавиши закрытия окна:
@@ -38,18 +17,34 @@ int main()
     //****************
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::F5))
     {
-      sl = &Game::saveGame;
-      (game.*sl)("/home/igor/CLionProjects/ONE_versus_ALL/save");
+      game.saveGame("../save");
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::F9))
     {
-      sl = &Game::loadGame;
-      (save->*sl)("/home/igor/CLionProjects/ONE_versus_ALL/save");
+      game.loadGame("../save");
     }
-    game.updateHero();
-    game.updateEnemies();
-    game.updateBullets();
-    game.outToDisplay();
+    try
+    {
+      game.updateHero();
+      game.updateEnemies();
+      game.updateBullets();
+      game.outToDisplay();
+    }
+    catch (GameOver g)
+    {
+      auto screenTexture = new sf::Texture();
+      screenTexture->loadFromFile("../img/gameOver.png");
+      auto screen = new sf::Sprite(*screenTexture);
+      sf::Event *event = new sf::Event();
+      while (game.window.pollEvent(*event))
+      {
+        if (event->type == sf::Event::Closed)
+          game.window.close();
+      }
+      game.window.clear();
+      game.window.draw(*screen);
+      game.window.display();
+    }
   }
   return 0;
 }

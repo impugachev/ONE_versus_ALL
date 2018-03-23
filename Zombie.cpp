@@ -3,13 +3,13 @@
 #include <cmath>
 
 Zombie::Zombie()
-    :Living(10,3,5,"/home/igor/CLionProjects/ONE_versus_ALL/img/zombie.png", 48, 60)
+    :Living(10,3,5,"../img/zombie.png", 48, 60)
 {
   objSprite.move(randPosition());
 }
 
 Zombie::Zombie(int HP, int speed, int damage)
-    :Living(HP,speed,damage,"/home/igor/CLionProjects/ONE_versus_ALL/img/zombie.png", 48, 60)
+    :Living(HP,speed,damage,"../img/zombie.png", 48, 60)
 {
   objSprite.move(randPosition());
 }
@@ -24,7 +24,7 @@ void Zombie::rotateToHero(Hero *hero)
 {
   auto heroPos = hero->getPosition();
   auto vect = heroPos - this->objSprite.getPosition();
-  float rot = acos(vect.y/sqrt(vect.x*vect.x+vect.y*vect.y))*180/3.14159265 - 180;
+  float rot = acos(vect.y/sqrt(vect.x*vect.x+vect.y*vect.y))*180/M_PI - 180;
   this->objSprite.setRotation(vect.x < 0 ? rot : -rot);
 }
 

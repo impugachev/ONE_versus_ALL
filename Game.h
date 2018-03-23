@@ -26,6 +26,7 @@ public:
   void updateEnemies();                     // Обновить состояние врагов
   void updateBullets();                     // Обновить состояние пуль
   void outToDisplay();                      // Вывести на экран
+  void hello();
   void loadGame(const char* fileName);      // Загрузить игру
   void saveGame(const char* fileName);      // Сохранить игру
   ~Game();
